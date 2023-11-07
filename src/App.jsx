@@ -1,17 +1,17 @@
 import { useState } from "react";
-import {PageDisplay, Auth, Header, NavBar, SignIn, Sockets} from "./Layout-components"
+import { PageDisplay, Auth, Header, NavBar, SignIn, Sockets } from "./Layout-components"
 
 
 function App() {
   return (
     <>
-  <Header />
-  <NavBar />
+      <Header />
+      {/* <NavBar />
   <Sockets />
   <SignIn />
   <Auth />
-  <PageDisplay />
-  </>
+  <PageDisplay /> */}
+    </>
   )
 }
 
