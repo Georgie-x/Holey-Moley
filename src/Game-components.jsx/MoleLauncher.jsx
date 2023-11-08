@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import Matter, { Engine, Render, Bodies, World, } from 'matter-js'
-import { Bird } from './game-objects/bird'
-import { SlingShot } from './game-objects/slingshot'
+import { Bird } from '../assets/game-images/game-objects/bird'
+import { SlingShot } from '../assets/game-images/game-objects/slingshot'
 import birdImage from './game-images/bird.gif'
 import { getShowCharacters } from '../axios'
 
 
 
-function Comp (props) {
+function Matter (props) {
   const [celebURL, setCelebURL] = useState('')
   const scene = useRef();
   const engine = useRef(Engine.create({
@@ -213,4 +213,4 @@ function Comp (props) {
   )
 }
 
-export default Comp
+export default Matter
