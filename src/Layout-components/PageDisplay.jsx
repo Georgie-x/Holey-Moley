@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import {Menu, Game, GameLoading, GameResults, GameSetup, HighScores} from "../Page-components"
+import { Menu, Game, GameLoading, GameResults, GameSetup, HighScores } from "../Page-components"
 
 function PageDisplay() {
   return (
