@@ -19,8 +19,10 @@ function NavBar() {
             <div className={isMenuOpen ? "mainNav" : "mainNavToggle"}>
                 <nav>
                     <ul>
-                        <li><Link className="navLinks" to="" onClick={() => { handleState() }}>Play Game</Link></li>
-                        <li>Leaderboard</li>
+                        <li><Link className="navLinks" to="/game" onClick={() => { handleState() }}>Play Game</Link></li>
+                        <li><Link className="navLinks" to="/highscores" onClick={() => {
+                            handleState()
+                        }}>High Scores</Link></li>
                         <li>Messages</li>
                         <li>Profile</li>
                     </ul>
