@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {PageDisplay, Auth, Header, NavBar, SignIn, Sockets} from "./Layout-components"
+import Comp from './game/Comp'
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   <SignIn />
   <Auth />
   <PageDisplay />
+  <Comp />
   </>
   )
 }
