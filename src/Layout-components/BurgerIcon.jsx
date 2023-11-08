@@ -2,19 +2,19 @@ import { useState } from "react";
 
 
 
-function BurgerIcon({ setIsOpen, isOpen }) {
-    const [open, setOpen] = useState(false);
+function BurgerIcon({ isMenuOpen, setIsMenuOpen, isIconOpen, setIsIconOpen }) {
+
 
     const handleState = () => {
-        setIsOpen(!isOpen);
-        setOpen(!open);
+        setIsMenuOpen(!isMenuOpen);
+        setIsIconOpen(!isIconOpen);
 
     }
     return (
         <div onClick={() => { handleState() }} className="burgerIcon">
-            <div className={!open ? "burgerBun" : "burgerBunClicked1"}></div>
-            <div className={!open ? "burgerBun" : "burgerBunClicked2"}></div>
-            <div className={!open ? "burgerBun" : "burgerBunClicked3"}></div>
+            <div className={!isIconOpen ? "burgerBun" : "burgerBunClicked1"}></div>
+            <div className={!isIconOpen ? "burgerBun" : "burgerBunClicked2"}></div>
+            <div className={!isIconOpen ? "burgerBun" : "burgerBunClicked3"}></div>
         </div>
     )
 }
