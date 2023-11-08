@@ -6,11 +6,12 @@ function App() {
   return (
     <>
       <Header />
+      <PageDisplay />
       {/* <NavBar />
-  <Sockets />
-  <SignIn />
-  <Auth />
-  <PageDisplay /> */}
+      <Sockets />
+      <SignIn />
+      <Auth />
+      <PageDisplay /> */}
     </>
   )
 }
