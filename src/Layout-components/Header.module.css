@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+*{
+  background-color: rgb(240, 240, 240);
+  
+  color:rgb(16, 189, 189);
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+/* Header and NavBar Styling */
+
+.o {
+  color:rgb(203, 133, 29)
+}
+
+.l {
+  color: rgb(14, 177, 123);
+}
+
+.e {
+  color:rgb(125, 176, 22)
+}
+
+.y {
+  color: rgb(177, 14, 153);
+}
+
+.m {
+  color: rgb(15, 201, 22);
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+.mainHeader {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  width: 50%;
+}
+
+
