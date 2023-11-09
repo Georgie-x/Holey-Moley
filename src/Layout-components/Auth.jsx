@@ -4,14 +4,33 @@ import SignIn from "./SignIn";
 import AuthDetails from "./AuthDetails";
 import SignUp from "./SignUp";
 import styles from "./Auth.module.css"
+import { useState } from "react";
 
 function Auth() {
+    const [signUp, setSignUp] = useState(true);
     return (
         <div>
-            <h1>Auth Component</h1>
-            <SignIn />
-            <SignUp />
+            <div className={styles.headerbox}>
+                <h1 className={styles.mainHeader}>
+                    <span className={styles.h}>h</span>
+                    <span className={styles.o}>o</span>
+                    <span className={styles.l}>l</span>
+                    <span className={styles.e}>e</span>
+                    <span className={styles.y}>y</span>
+                    <span className={styles.m}>m</span>
+                    <span className={styles.o}>o</span>
+                    <span className={styles.l}>l</span>
+                    <span className={styles.e}>e</span>
+                    <span className={styles.y}>y</span>
+
+                </h1>
+            </div>
+
+            {signUp ? <SignIn /> : <SignUp />}
+            {/* <SignIn />
+            <SignUp /> */}
             <AuthDetails />
+            <button onClick={() => { setSignUp(!signUp) }}>Sign Up</button>
         </div>
     )
 }
