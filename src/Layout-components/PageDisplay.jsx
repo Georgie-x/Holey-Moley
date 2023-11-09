@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-import {Menu, Game, GameLoading, GameResults, GameSetup, HighScores} from "../Page-components"
+import { Menu, Game, GameLoading, GameResults, GameSetup, HighScores } from "../Page-components"
+import { Auth } from '../Layout-components'
 import styles from "./PageDisplay.module.css"
 
 
