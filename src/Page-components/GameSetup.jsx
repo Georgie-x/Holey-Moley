@@ -1,3 +1,5 @@
+import styles from "./GameSetup.module.css"
+
 function GameSetup() {
   return (
     <>
