@@ -8,7 +8,8 @@ function PageDisplay() {
   return (
     <main>
       <Routes>
-        <Route path="/" element={<Menu />} />
+        <Route path="/" element={<Auth />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/setup" element={<GameSetup />} />
         <Route path="/lobby" element={<GameLoading />} />
         <Route path="/results" element={<GameResults />} />

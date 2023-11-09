@@ -9,11 +9,11 @@ function App() {
     <>
       <Header />
       <PageDisplay />
-      {/* <NavBar />
+      <NavBar />
       <Sockets />
-      <SignIn />
+
       <Auth />
-      <PageDisplay /> */}
+      <PageDisplay />
     </>
   )
 }
