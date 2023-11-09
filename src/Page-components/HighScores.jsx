@@ -6,11 +6,11 @@ import styles from "./HighScores.module.css"
 function HighScores() {
     return (
         <>
-            <div className="highscores">
+            <div className={styles.highscores}>
                 <table>
                     <tr>
-                        <th className="scoreName">Name</th>
-                        <th className="scoreHigh">High Score</th>
+                        <th className={styles.scoreName}>Name</th>
+                        <th className={styles.scoreHigh}>High Score</th>
                     </tr>
                     <tr>
                         <td>JonnyQuango</td>
@@ -29,8 +29,8 @@ function HighScores() {
                         <td>2200</td>
                     </tr>
                     <tr>
-                        <td className="bottomName">MunkleChunks</td>
-                        <td className="bottomScore">2</td>
+                        <td className={styles.bottomName}>MunkleChunks</td>
+                        <td className={styles.bottomScore}>2</td>
                     </tr>
                 </table>
             </div>
