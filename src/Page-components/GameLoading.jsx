@@ -1,3 +1,6 @@
+import styles from "./GameLoading.module.css"
+
+
 function GameLoading(){
     return <h1>Game Loading</h1>
 }
