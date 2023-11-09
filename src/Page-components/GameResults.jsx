@@ -1,3 +1,5 @@
+import styles from "./GameResults.module.css"
+
 function GameResults() {
   return (
     <>

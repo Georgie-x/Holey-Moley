@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import BurgerIcon from './BurgerIcon.jsx'
 import styles from "./NavBar.module.css"
+
 function NavBar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isIconOpen, setIsIconOpen] = useState(false);

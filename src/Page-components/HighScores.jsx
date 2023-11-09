@@ -1,3 +1,8 @@
+
+import styles from "./HighScores.module.css"
+
+
+
 function HighScores() {
     return (
         <>
@@ -31,6 +36,7 @@ function HighScores() {
             </div>
         </>
     )
+
 }
 
 export default HighScores
