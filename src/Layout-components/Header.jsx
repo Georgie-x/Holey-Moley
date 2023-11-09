@@ -1,20 +1,21 @@
 import NavBar from './NavBar.jsx'
+import styles from "./Header.module.css"
 
 function Header() {
 
     return (
         <>
-            <h1 className="mainHeader">
-                <span className="h">h</span>
-                <span className="o">o</span>
-                <span className="l">l</span>
-                <span className="e">e</span>
-                <span className="y">y</span>
-                <span className="m">m</span>
-                <span className="o">o</span>
-                <span className="l">l</span>
-                <span className="e">e</span>
-                <span className="y">y</span>
+            <h1 className={styles.mainHeader}>
+                <span className={styles.h}>h</span>
+                <span className={styles.o}>o</span>
+                <span className={styles.l}>l</span>
+                <span className={styles.e}>e</span>
+                <span className={styles.y}>y</span>
+                <span className={styles.m}>m</span>
+                <span className={styles.o}>o</span>
+                <span className={styles.l}>l</span>
+                <span className={styles.e}>e</span>
+                <span className={styles.y}>y</span>
 
             </h1>
             <NavBar />
