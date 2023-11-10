@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@200&display=swap');
 
 *{
   background-color: rgb(240, 240, 240);
@@ -16,14 +16,7 @@
   }
 }
 
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(200%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
+
 
 @keyframes slideOut {
   0% {
