@@ -1,7 +1,16 @@
-*{
+/* *{
     background-color: rgb(240, 240, 240);
     color:rgb(16, 189, 189);
     font-family: 'Pixelify Sans', sans-serif;
+  } */
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(200%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
 .mainNav {

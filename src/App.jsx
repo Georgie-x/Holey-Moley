@@ -7,7 +7,7 @@ import AuthDetails from "./Layout-components/AuthDetails";
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <PageDisplay />
       {/* <NavBar />
       <Sockets />
