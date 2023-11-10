@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 
-let countdownDuration = 10;
+let countdownDuration = 30;
 let countdownInterval = null
 
 io.on("connection", (socket) => {
@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
     socket.on("reset_timer", () => {
         console.log("received end timer event")
         clearInterval(countdownInterval)
-        countdownDuration = 10
+        countdownDuration = 30
         countdownInterval = null
         io.emit("update_timer", countdownDuration)
     })

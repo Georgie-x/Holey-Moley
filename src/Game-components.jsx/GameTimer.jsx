@@ -6,7 +6,7 @@ const socket = io.connect("http://localhost:3001")
 function GameTimer({celebURLs}) {
     const [index, setIndex] = useState(0)
     const [celebURL, setCelebURL] = useState(celebURLs[0])
-    const [timer, setTimer] = useState(10)
+    const [timer, setTimer] = useState(30)
 
     useEffect(() => {
         if(!timer) {
