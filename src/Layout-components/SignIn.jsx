@@ -21,7 +21,7 @@ function SignIn() {
     return (
         <div className={styles.signincontainer}>
             <form onSubmit={signIn}>
-                <h1>Log In to your Account</h1>
+                <h2>Log In</h2>
                 <input
                     type="email"
                     placeholder="Enter Your email"

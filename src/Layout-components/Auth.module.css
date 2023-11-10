@@ -1,3 +1,12 @@
+.landingpage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+
 .o {
     color:rgb(203, 133, 29)
   }
@@ -21,4 +30,8 @@
   .headerbox {
       margin-top: 100px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
   }
+
+  

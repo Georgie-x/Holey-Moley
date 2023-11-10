@@ -9,7 +9,7 @@ import { useState } from "react";
 function Auth() {
     const [signUp, setSignUp] = useState(true);
     return (
-        <div>
+        <div className={styles.landingpage}>
             <div className={styles.headerbox}>
                 <h1 className={styles.mainHeader}>
                     <span className={styles.h}>h</span>
@@ -24,13 +24,14 @@ function Auth() {
                     <span className={styles.y}>y</span>
 
                 </h1>
+                {signUp ? <SignIn /> : <SignUp />}
+                {/* <SignIn />
+            <SignUp /> */}
+                {/* <AuthDetails /> */}
+                {/* <button onClick={() => { setSignUp(!signUp) }}>Sign Up</button> */}
             </div>
 
-            {signUp ? <SignIn /> : <SignUp />}
-            {/* <SignIn />
-            <SignUp /> */}
-            <AuthDetails />
-            <button onClick={() => { setSignUp(!signUp) }}>Sign Up</button>
+
         </div>
     )
 }
