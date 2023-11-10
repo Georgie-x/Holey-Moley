@@ -7,6 +7,7 @@ import styles from "./GameTimer.module.css"
 const socket = io.connect("http://localhost:3001")
 
 function GameTimer({celebURLs}) {
+    //have 5 celeb urls
     const [index, setIndex] = useState(0)
     const [celebURL, setCelebURL] = useState(celebURLs[0])
     const [timer, setTimer] = useState(10)
@@ -58,7 +59,7 @@ function GameTimer({celebURLs}) {
             </div>
           ) : (
             <>
-             {/*  <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */}
+        {/*   <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */} 
               <p className='time-remaining'>{timer} seconds remaining</p>
               <div className="timer">
                 <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
