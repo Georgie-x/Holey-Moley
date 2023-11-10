@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
+
 *{
-  background-color: rgb(240, 240, 240);
+  /* background-color: rgb(240, 240, 240); */
   color:rgb(16, 189, 189);
   font-family: 'Pixelify Sans', sans-serif;
 }
@@ -149,6 +150,4 @@
   transform: rotate(-45deg);
   transition: all 0.3s linear;
 }
-
-
 

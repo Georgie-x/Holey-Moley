@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  .read-the-docs {
+    color: #888;
+  }
+  
+  
+  .block-container {
+    background-size: 300px;
+    background-image: url('');
+    display: grid;
+    width: 600px;
+    height: 800px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .block-container > div {
+    z-index: 1;
+  }
+  .hey {
+    display: flex;
+    justify-content: center;
+  }
+  .one {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .two {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .three {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .four {
+    background-color: rgba(203, 133, 29, 100);
+    width: 140px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .five {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .six {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .seven {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .eight {
+    background-color: rgba(203, 133, 29, 100);
+    width: 140px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .nine {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .ten {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .eleven {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .twelve {
+    background-color: rgba(203, 133, 29, 100);
+    width: 140px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .thirteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .fourteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .fifteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .sixteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 140px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .seventeen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .eighteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .nineteen {
+    background-color: rgba(203, 133, 29, 100);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .twenty {
+    background-color: rgba(203, 133, 29, 100);
+    width: 140px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+    border: solid black 1px;
+  }
+  .removeBlock{
+    background-color: rgba(203, 133, 29, 0);
+    width: 150px;
+    height: 160px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  
+  
+  
+  * {
+    font-family: 'Pixelify Sans', sans-serif;
+  }
+  .game-window-and-button-container {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 800px;
+    position: relative;
+  }
+  .celeb-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    border: solid black 5px;
+    box-sizing: border-box;
+  }
+  .game-window {
+    position: relative;
+    z-index: 2;
+  }
+  button {
+    padding: 10px;
+    align-self: center;
+    margin-top: 10px;
+  }
+  .gameButton {
+    text-align: center;
+    background-color: black;
+    z-index: 1;
+  }
+  button {
+    background: none;
+    color: #FFA260;
+    border-radius: 18px;
+    border: 2px solid;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: all 0.25s;
+    z-index:3;
+  }
+  .timer {
+    position:relative;
+    z-index: 1;
+    background-color: black;
+    color: white;
+  }
+  .new-ball-timer {
+    z-index: 4;
+    background-color: black;
+    color: white;
+  }
+  .next-celeb-button {
+    z-index: 6;
+    background-color: black;
+    color: white;
+  }
+
+  .time-remaining {
+    z-index: 30;
+  }
