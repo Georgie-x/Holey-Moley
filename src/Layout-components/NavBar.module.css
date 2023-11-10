@@ -1,0 +1,54 @@
+*{
+    background-color: rgb(240, 240, 240);
+    color:rgb(16, 189, 189);
+    font-family: 'Pixelify Sans', sans-serif;
+  }
+
+.mainNav {
+    background-color: rgb(35, 21, 77);
+    position: fixed;
+    right: 0;
+    padding-right: 10%;
+    border-radius: 12px 0px 0px 12px;
+    animation: 0.2s ease-out 0s 1 slideInFromRight;
+  }
+  
+  .mainNavToggle {
+    display: none;
+    /* position: absolute;
+    right: 0;
+    
+    animation: 0.2s ease-out 0s 1 slideOut; */
+  }
+  
+  .mainNavToggle li {
+    
+    padding: 10px;
+    list-style-type: none;
+  }
+  
+  .mainNav ul {
+    background-color: rgb(35, 21, 77);
+  }
+  
+  .navLinks {
+    text-decoration: none;
+    background-color: rgb(35, 21, 77);
+  }
+  
+  .mainNav li {
+    background-color: rgb(35, 21, 77);
+    padding: 10px;
+    list-style-type: none;
+  }
+  
+  .mainNav li:hover {
+    cursor: pointer;
+    color:blueviolet;
+  }
+  
+  .placeholderNav {
+    position: absolute;
+    right: 5%;
+    top: 4%;
+  }

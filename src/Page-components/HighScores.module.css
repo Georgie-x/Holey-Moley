@@ -1,0 +1,48 @@
+.highscores table {
+    border-radius: 12px;
+  
+    
+    background-color: rgb(16, 189, 189);
+  }
+  
+   th, tr {
+     color: rgb(240, 240, 240);
+  
+     background-color: rgb(16, 189, 189);
+    border:rgb(16, 189, 189) solid 1px;
+  }
+  
+  
+  th  {
+    font-family: 'Nunito', sans-serif;
+    border: rgb(240, 240, 240) solid 1.5px;
+  }
+  
+  td {
+  
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  
+  td:nth-child(1) {
+    text-align: center;
+  }
+  
+  
+  td:nth-child(2) {
+    text-align: right;
+    text-align:center ;
+  }
+  
+  .bottomName {
+    border-radius: 0px 0px 0px 10px;
+  }
+  .bottomScore {
+    border-radius: 0px 0px 10px 0px;
+  }
+  .scoreName {
+    border-radius: 10px 0px 0px 0px;
+  }
+  .scoreHigh {
+    border-radius: 0px 10px 0px 0px;
+  }

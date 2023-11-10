@@ -1,32 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
 
 
 *{
-  /* background-color: rgb(240, 240, 240); */
+  background-color: rgb(240, 240, 240);
+  
   color:rgb(16, 189, 189);
   font-family: 'Pixelify Sans', sans-serif;
-}
-
-/* Header and NavBar Styling */
-
-.o {
-  color:rgb(203, 133, 29)
-}
-
-.l {
-  color: rgb(14, 177, 123);
-}
-
-.e {
-  color:rgb(125, 176, 22)
-}
-
-.y {
-  color: rgb(177, 14, 153);
-}
-
-.m {
-  color: rgb(15, 201, 22);
 }
 
 @keyframes slideInFromLeft {
@@ -55,99 +34,3 @@
     transform: translateX(400%);
   }
 }
-
-.mainHeader {
-  animation: 1s ease-out 0s 1 slideInFromLeft;
-  width: 50%;
-}
-
-
-
-.mainNav {
-  background-color: rgb(35, 21, 77);
-  position: fixed;
-  right: 0;
-  padding-right: 10%;
-  border-radius: 12px 0px 0px 12px;
-  animation: 0.2s ease-out 0s 1 slideInFromRight;
-}
-
-.mainNavToggle {
-  display: none;
-  /* position: absolute;
-  right: 0;
-  
-  animation: 0.2s ease-out 0s 1 slideOut; */
-}
-
-.mainNavToggle li {
-  
-  padding: 10px;
-  list-style-type: none;
-}
-
-.mainNav ul {
-  background-color: rgb(35, 21, 77);
-}
-
-.navLinks {
-  text-decoration: none;
-  background-color: rgb(35, 21, 77);
-}
-
-.mainNav li {
-  background-color: rgb(35, 21, 77);
-  padding: 10px;
-  list-style-type: none;
-}
-
-.mainNav li:hover {
-  cursor: pointer;
-  color:blueviolet;
-}
-
-.placeholderNav {
-  position: absolute;
-  right: 5%;
-  top: 4%;
-}
-
-.burgerIcon {
-  width: 2rem;
-  height: 2rem;
-  position: fixed;
-  top: 4%;
-  right: 5%;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: column nowrap;
-}
-
-.burgerBun{
-  width: 2rem;
-  height: 0.25rem;
-  background-color: rgb(125, 176, 22);
-  border-radius: 10px;
-  transition: all 0.3s linear;
-}
-
-.burgerBunClicked1{
-  transform-origin: 1px;
-  width: 2rem;
-  height: 0.25rem;
-  background-color: rgb(203, 133, 29);
-  border-radius: 10px;
-  transform: rotate(45deg);
-  transition: all 0.3s linear;
-}
-
-.burgerBunClicked3{
-  transform-origin: 1px;
-  width: 2rem;
-  height: 0.25rem;
-  background-color: rgb(203, 133, 29);
-  border-radius: 10px;
-  transform: rotate(-45deg);
-  transition: all 0.3s linear;
-}
-

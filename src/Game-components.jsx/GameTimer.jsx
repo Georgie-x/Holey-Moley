@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react'
 import io from 'socket.io-client'
+import styles from "./GameTimer.module.css"
+
+
 
 const socket = io.connect("http://localhost:3001")
 

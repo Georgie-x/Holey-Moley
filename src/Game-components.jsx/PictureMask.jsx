@@ -1,3 +1,5 @@
+import styles from "./PictureMask.module.css"
+
 function PictureMask(){
     
     return <h1>PictureMask</h1>

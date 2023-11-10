@@ -14,7 +14,7 @@ function App() {
       <Launcher />
       {/* <NavBar />
       <Sockets />
-      <SignIn />
+
       <Auth />
       <PageDisplay /> */}
     </>

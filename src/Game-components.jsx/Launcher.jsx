@@ -6,6 +6,9 @@ import birdImage from '../Game-components.jsx/game-objects/birdImage.gif'
 import { getShowCharacters } from '../axios'
 import GameTimer from '../Game-components.jsx/GameTimer'
 
+import styles from "./Launcher.module.css"
+
+
 function Launcher(){
     const [birdReleased, setBirdReleased] = useState(false)
     const [celebURLs, setCelebURLs] = useState([])
