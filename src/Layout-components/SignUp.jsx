@@ -6,6 +6,7 @@ import styles from "./SignUp.module.css"
 function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('')
 
     const signUp = (e) => {
         e.preventDefault();
@@ -19,24 +20,36 @@ function SignUp() {
     };
 
     return (
-    <div className='sign-in-container'>
-        <form onSubmit={signUp}>
-            <h1>Create Account</h1>
-            <input 
-                type="email" 
-                placeholder="Enter Your email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            ></input>
-            <input 
-                type="password" 
-                placeholder="Enter your password" 
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            ></input>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+        <div className={styles.signincontainer}>
+            <form onSubmit={signUp}>
+                <h2>Create Account</h2>
+                <label htmlFor="email">Email</label>
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Enter Your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                ></input>
+                <label htmlFor="password">Password</label>
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Create your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                ></input>
+                <label htmlFor="username">Username</label>
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Create your username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                ></input>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
     );
 };
 

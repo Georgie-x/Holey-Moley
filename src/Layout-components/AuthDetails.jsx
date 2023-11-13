@@ -26,9 +26,9 @@ const AuthDetails = () => {
         }).catch(error => console.log(error))
     }
 
-  return (
-    <div>{ authUser ? <><p>{`Signed In as ${authUser.email}`}</p><button onClick={userSignOut}>Sign Out</button></> : <p>Signed Out</p>}</div>
-  )
+    return (
+        <div className={styles.signedin}>{authUser ? <><p>{`Signed In as ${authUser.email}`}</p><button className={styles.button} onClick={userSignOut}>Sign Out</button></> : <p>Signed Out</p>}</div>
+    )
 }
 
-export default AuthDetails
+export default AuthDetails;

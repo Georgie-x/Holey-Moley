@@ -27,8 +27,9 @@ function Auth() {
                 {signUp ? <SignIn /> : <SignUp />}
                 {/* <SignIn />
             <SignUp /> */}
-                {/* <AuthDetails /> */}
-                {/* <button onClick={() => { setSignUp(!signUp) }}>Sign Up</button> */}
+
+                <h3>OR...</h3>
+                <button className={styles.button} onClick={() => { setSignUp(!signUp) }}>{signUp ? "Sign Up" : "Log In"}</button>
             </div>
 
 

@@ -4,8 +4,12 @@ import styles from "./Game.module.css"
 function Game() {
     return (
         <div>
-            <h1>Game</h1>
-            <Launcher />
+
+            <div className={styles.gamecontainer}>
+                <div className={styles.gameborder}>
+                    <Launcher />
+                </div>
+            </div>
         </div>
     )
 }
