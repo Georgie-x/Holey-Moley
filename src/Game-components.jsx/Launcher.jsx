@@ -157,28 +157,28 @@ function Launcher(){
                       const gameWindow = document.getElementsByClassName('game-window')[0];
                       const gameWindowRect = gameWindow.getBoundingClientRect();
                       const x = x_bird - gameWindowRect.left;
-                      const y = y_bird - gameWindowRect.top;
+                      const y = y_bird - gameWindowRect.top - 51;
 
-                  if (x < 150 && y < 160) { setblock1(false); }
-                  else if (x >= 150 && x < 300 && y < 160) { setblock2(false); }
-                  else if (x >= 300 && x < 450 && y < 160) { setblock3(false); }
-                  else if (x >= 450 && x < 600 && y < 160) { setblock4(false); }
-                  else if (x < 150 && y >= 160 && y < 320) { setblock5(false); }
-                  else if (x >= 150 && x < 300 && y >= 160 && y < 320) { setblock6(false); }
-                  else if (x >= 300 && x < 450 && y >= 160 && y < 320) { setblock7(false); }
-                  else if (x >= 450 && x < 600 && y >= 160 && y < 320) { setblock8(false); }
-                  else if (x < 150 && y >= 320 && y < 480) { setblock9(false); }
-                  else if (x >= 150 && x < 300 && y >= 320 && y < 480) { setblock10(false); }
-                  else if (x >= 300 && x < 450 && y >= 320 && y < 480) { setblock11(false); }
-                  else if (x >= 450 && x < 600 && y >= 320 && y < 480) { setblock12(false); }
-                  else if (x < 150 && y >= 480 && y < 640) { setblock13(false); }
-                  else if (x >= 150 && x < 300 && y >= 480 && y < 640) { setblock14(false); }
-                  else if (x >= 300 && x < 450 && y >= 480 && y < 640) { setblock15(false); }
-                  else if (x >= 450 && x < 600 && y >= 480 && y < 640) { setblock16(false); }
-                  else if (x < 150 && y >= 640 && y < 800) { setblock17(false); }
-                  else if (x >= 150 && x < 300 && y >= 640 && y < 800) { setblock18(false); }
-                  else if (x >= 300 && x < 450 && y >= 640 && y < 800) { setblock19(false); }
-                  else if (x >= 450 && x < 600 && y >= 640 && y < 800) { setblock20(false); }
+                      if (x < 150 && y < 160) { setblock1(false); }
+                      else if (x >= 150 && x < 300 && y < 160) { setblock2(false); }
+                      else if (x >= 300 && x < 450 && y < 160) { setblock3(false); }
+                      else if (x >= 450 && x < 600 && y < 160) { setblock4(false); }
+                      else if (x < 150 && y >= 160 && y < 320) { setblock5(false); }
+                      else if (x >= 150 && x < 300 && y >= 160 && y < 320) { setblock6(false); }
+                      else if (x >= 300 && x < 450 && y >= 160 && y < 320) { setblock7(false); }
+                      else if (x >= 450 && x < 600 && y >= 160 && y < 320) { setblock8(false); }
+                      else if (x < 150 && y >= 320 && y < 480) { setblock9(false); }
+                      else if (x >= 150 && x < 300 && y >= 320 && y < 480) { setblock10(false); }
+                      else if (x >= 300 && x < 450 && y >= 320 && y < 480) { setblock11(false); }
+                      else if (x >= 450 && x < 600 && y >= 320 && y < 480) { setblock12(false); }
+                      else if (x < 150 && y >= 480 && y < 640) { setblock13(false); }
+                      else if (x >= 150 && x < 300 && y >= 480 && y < 640) { setblock14(false); }
+                      else if (x >= 300 && x < 450 && y >= 480 && y < 640) { setblock15(false); }
+                      else if (x >= 450 && x < 600 && y >= 480 && y < 640) { setblock16(false); }
+                      else if (x < 150 && y >= 640 && y < 800) { setblock17(false); }
+                      else if (x >= 150 && x < 300 && y >= 640 && y < 800) { setblock18(false); }
+                      else if (x >= 300 && x < 450 && y >= 640 && y < 800) { setblock19(false); }
+                      else if (x >= 450 && x < 600 && y >= 640 && y < 800) { setblock20(false); }
                     }, 5000)
                 }
                 else {
@@ -214,6 +214,38 @@ function Launcher(){
         }
     }
 
+    const handleClick = (e) => {
+      const x_mouse = e.clientX
+      const y_mouse = e.clientY
+      const gameWindow = document.getElementsByClassName('game-window')[0];
+      const gameWindowRect = gameWindow.getBoundingClientRect();
+      const x = x_mouse - gameWindowRect.left;
+      const y = y_mouse - gameWindowRect.top - 51;
+
+      if (x < 150 && y < 160) { setblock1(false); }
+      else if (x >= 150 && x < 300 && y < 160) { setblock2(false); }
+      else if (x >= 300 && x < 450 && y < 160) { setblock3(false); }
+      else if (x >= 450 && x < 600 && y < 160) { setblock4(false); }
+      else if (x < 150 && y >= 160 && y < 320) { setblock5(false); }
+      else if (x >= 150 && x < 300 && y >= 160 && y < 320) { setblock6(false); }
+      else if (x >= 300 && x < 450 && y >= 160 && y < 320) { setblock7(false); }
+      else if (x >= 450 && x < 600 && y >= 160 && y < 320) { setblock8(false); }
+      else if (x < 150 && y >= 320 && y < 480) { setblock9(false); }
+      else if (x >= 150 && x < 300 && y >= 320 && y < 480) { setblock10(false); }
+      else if (x >= 300 && x < 450 && y >= 320 && y < 480) { setblock11(false); }
+      else if (x >= 450 && x < 600 && y >= 320 && y < 480) { setblock12(false); }
+      else if (x < 150 && y >= 480 && y < 640) { setblock13(false); }
+      else if (x >= 150 && x < 300 && y >= 480 && y < 640) { setblock14(false); }
+      else if (x >= 300 && x < 450 && y >= 480 && y < 640) { setblock15(false); }
+      else if (x >= 450 && x < 600 && y >= 480 && y < 640) { setblock16(false); }
+      else if (x < 150 && y >= 640 && y < 800) { setblock17(false); }
+      else if (x >= 150 && x < 300 && y >= 640 && y < 800) { setblock18(false); }
+      else if (x >= 300 && x < 450 && y >= 640 && y < 800) { setblock19(false); }
+      else if (x >= 450 && x < 600 && y >= 640 && y < 800) { setblock20(false); }
+
+
+    }
+
 
     return (
         <>
@@ -224,13 +256,13 @@ function Launcher(){
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}
-                // onClick={handleClick}
+                onClick={handleClick}
                 style={{ position: 'absolute', width: '100%', height: '100%' }}
               >
                 <div ref={scene} style={{ width: '100%', height: '100%' }} />
               </div>
             </div>
-                <GameTimer celebURLs={celebURLs}/>
+                <GameTimer celebURLs={celebURLs} setblock1={setblock1}  setblock2={setblock2}  setblock3={setblock3}  setblock4={setblock4}  setblock5={setblock5}  setblock6={setblock6}  setblock7={setblock7}  setblock8={setblock8}  setblock9={setblock9} setblock10={setblock10}  setblock11={setblock11}  setblock12={setblock12} setblock13={setblock13}  setblock14={setblock14}  setblock15={setblock15}  setblock16={setblock16}  setblock17={setblock17} setblock18={setblock18}  setblock19={setblock19}  setblock20={setblock20}/>
             <div className="block-container">
               <div className={block1 ? 'one' : 'removeBlock'} ></div>
               <div className={block2 ? 'two' : 'removeBlock'}></div>
@@ -254,11 +286,11 @@ function Launcher(){
               <div className={block20 ? 'twenty' : 'removeBlock'}></div>
             </div>
           </div>
-          <br />  <br />  <br /> <br />  <br />  <br />  <br />  <br />  <br />  <br />  <br />
+{/*           <br />  <br />  <br /> <br />  <br />  <br />  <br />  <br />  <br />  <br />  <br />
           <form onSubmit={handleSubmit}>
             <input onChange={(e)=> setAnswer(e.target.value)} value={answer} type={'text'} placeholder={'Your Answer'}/>
             <button type='Submit'> Click to Submit</button>
-          </form>
+          </form> */}
         <div>
         </div>
         </>
