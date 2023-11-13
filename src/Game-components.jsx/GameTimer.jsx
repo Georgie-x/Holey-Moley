@@ -6,12 +6,12 @@ import styles from "./GameTimer.module.css"
 
 const socket = io.connect("http://localhost:3001")
 
-function GameTimer({celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
+function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
     //have 5 celeb urls
     const [index, setIndex] = useState(0)
     const [celebURL, setCelebURL] = useState(celebURLs[0])
     const [timer, setTimer] = useState(10)
-
+    
     useEffect(() => {
         if(!timer) {
         socket.on(`update_celeb`, (newCelebURL) => {
@@ -70,7 +70,7 @@ function GameTimer({celebURLs, setblock1, setblock2, setblock3, setblock4, setbl
         const randomId = Math.floor(celebURLs.length * Math.random())
         setIndex(index+1)
         console.log(index)
-        const newCelebURL = celebURLs[randomId]
+        const newCelebURL = celebURLs[index]
         socket.emit("new_game", newCelebURL);
         setCelebURL(celebURLs[index % celebURLs.length]);
         resetTimer();
@@ -85,18 +85,99 @@ function GameTimer({celebURLs, setblock1, setblock2, setblock3, setblock4, setbl
             </div>
           ) : (
             <>
-        {/* <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */}
+   {/*         <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */}
               <p className='time-remaining'>{timer} seconds remaining</p>
               <div className="timer">
                 <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
               </div>
-              <form className='answer-form'>
-            <input />
-            <button type='Submit'> Click to Submit</button>
-          </form>
+              <AnswerForm celebNames={celebNames} index={index}/>
+        
             </>
           )}
         </>
       );
           }
+
+  function AnswerForm({celebNames, index}) {
+    const [answer, setAnswer] = useState('')
+    const [celebName, setCelebName] = useState('')
+    const [celebCountry, setCelebCountry]= useState('')
+    const [answerBorder, setAnswerBorder] = useState(true)
+
+    //Handling SUbmit
+  const handleSubmit = (e) =>{
+    const userInput =  e.target[0].value
+    e.preventDefault()
+  
+  //Ignoring case sensitivity
+     const userAnswer = userInput.toLowerCase()
+     const gameAnswer = celebName.toLowerCase()
+  
+  //Matching Number of Chars 
+     const userAnswerCharNum = userAnswer.length
+     const gameAnswerCharNum = gameAnswer.length
+  //Telling how many characters the player got wrong
+  const gameAnswerArr = []
+  const userAnswerArr = []
+      for(let i =0; i < gameAnswerCharNum; i++){
+        gameAnswerArr.push(gameAnswer[i])
+      }
+      for(let i =0; i< userAnswerCharNum; i++){
+        userAnswerArr.push(userAnswer[i])
+      }
+      const difference = 
+      gameAnswerArr.filter((element) => !userAnswerArr.includes(element)); 
+
+
+
+
+    if(gameAnswer === userAnswer){
+      displayNewCeleb()
+      setAnswer('')
+      setAnswerBorder(true)
+      console.log("CORRECT!")
+
+    }else{
+      console.log("this aint it dummy")
+      console.log(difference, "You've got this much wrong")
+      setAnswerBorder(false)
+    }
+  }
+    
+
+
+
+
+    return (
+      <form className='answer-form' onSubmit={handleSubmit}>
+       <input onChange={(e)=> setAnswer(e.target.value)} value={answer} type={'text'} placeholder={'Your Answer'} 
+        className={answerBorder ? 'submitForm' : 'submitFormWrong'}/>
+        <button type='Submit'> Click to Submit</button>
+     {/*    <p>Nationality : {celebCountry}</p>
+        <p>you have {gameAnswerCharNum - answer.length} letters left</p> */}
+      </form>
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default GameTimer
