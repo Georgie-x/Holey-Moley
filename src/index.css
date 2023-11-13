@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@200&display=swap');
 
+
 *{
-  background-color: rgb(240, 240, 240);
+  background-color: transparent;
   
   color:rgb(16, 189, 189);
   font-family: 'Pixelify Sans', sans-serif;
