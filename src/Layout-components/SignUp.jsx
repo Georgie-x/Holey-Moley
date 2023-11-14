@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import styles from "./SignUp.module.css"
 
-function SignUp() {
+function SignUp({ setIsHeaderVisible }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('')
@@ -12,6 +12,7 @@ function SignUp() {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                setIsHeaderVisible(true);
                 console.log(userCredential);
             })
             .catch((error) => {

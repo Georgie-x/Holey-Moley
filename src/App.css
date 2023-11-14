@@ -284,6 +284,8 @@
     transition: all 0.25s;
     z-index:3;
   }
+
+  
   .timer {
 
     position:relative;

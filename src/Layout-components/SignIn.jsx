@@ -3,7 +3,7 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import styles from "./SignIn.module.css"
 
-function SignIn() {
+function SignIn({ setIsHeaderVisible }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -11,6 +11,9 @@ function SignIn() {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                setIsHeaderVisible(true);
+                setEmail('');
+                setPassword('');
                 console.log(userCredential);
             })
             .catch((error) => {
@@ -22,12 +25,15 @@ function SignIn() {
         <div className={styles.signincontainer}>
             <form onSubmit={signIn}>
                 <h2>Log In</h2>
+                <label htmlFor="email">Email</label>
                 <input
+                    id="email"
                     type="email"
                     placeholder="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 ></input>
+                <label id="password" htmlFor="password">Password</label>
                 <input
                     type="password"
                     placeholder="password"
