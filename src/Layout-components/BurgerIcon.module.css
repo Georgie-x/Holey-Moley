@@ -1,18 +1,23 @@
 *{
-    background-color: rgb(240, 240, 240);
+    /* background-color: rgb(240, 240, 240); */
     color:rgb(16, 189, 189);
     font-family: 'Pixelify Sans', sans-serif;
   }
 
 .burgerIcon {
+  
     width: 2rem;
     height: 2rem;
-    position: fixed;
-    top: 4%;
-    right: 5%;
+    /* position: fixed;
+    top: 2.5%;
+    right: 3%; */
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
+  }
+
+  .burgerIcon:hover {
+    cursor: pointer;
   }
   
   .burgerBun{

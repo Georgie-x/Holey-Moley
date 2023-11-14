@@ -9,8 +9,8 @@ function HighScores() {
             <div className={styles.highscores}>
                 <table>
                     <tr>
-                        <th className={styles.scoreName}>Name</th>
-                        <th className={styles.scoreHigh}>High Score</th>
+                        <th className={styles.scoreName}>name</th>
+                        <th className={styles.scoreHigh}>high score</th>
                     </tr>
                     <tr>
                         <td>JonnyQuango</td>
