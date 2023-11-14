@@ -9,9 +9,12 @@ const socket = io.connect("http://localhost:3001")
 function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
     //have 5 celeb urls
     const [index, setIndex] = useState(0)
-    const [celebURL, setCelebURL] = useState(celebURLs[0])
-    const [timer, setTimer] = useState(10)
-    
+    const [celebURL, setCelebURL] = useState([
+      "https://static.tvmaze.com/uploads/images/original_untouched/2/6255.jpg",
+  ])
+    const [timer, setTimer] = useState(60)
+    const [loaded, setLoaded] = useState(false)
+    const [answer, setAnswer] = useState('')
     useEffect(() => {
         if(!timer) {
         socket.on(`update_celeb`, (newCelebURL) => {
@@ -36,7 +39,6 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
             setblock18(true)
             setblock19(true)
             setblock20(true)            
-            console.log(index)
         }) 
         }
         socket.on(`update_timer`, (countdownDuration) => {
@@ -46,6 +48,32 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
                 setIndex((index+1)%5)
             }
         })
+
+        socket.on("update_celeb", (newCelebURL) => {
+          console.log("update celeb", newCelebURL);
+          setCelebURL(newCelebURL);
+          setblock1(true)
+          setblock2(true)
+          setblock3(true)
+          setblock4(true)
+          setblock5(true)
+          setblock6(true)
+          setblock7(true)
+          setblock8(true)
+          setblock9(true)
+          setblock10(true)
+          setblock11(true)
+          setblock12(true)
+          setblock13(true)
+          setblock14(true)
+          setblock15(true)
+          setblock16(true)
+          setblock17(true)
+          setblock18(true)
+          setblock19(true)
+          setblock20(true)  
+        });
+
         return () => {
             socket.off(`update_timer`)
             socket.off(`update_celeb`)
@@ -67,10 +95,11 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
 
 
     const handleNextCeleb = () => {
+        console.log("next celeb")
         const randomId = Math.floor(celebURLs.length * Math.random())
         setIndex(index+1)
-        console.log(index)
         const newCelebURL = celebURLs[index]
+        socket.emit("next_celeb", newCelebURL);
         socket.emit("new_game", newCelebURL);
         setCelebURL(celebURLs[index % celebURLs.length]);
         resetTimer();
@@ -85,12 +114,12 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
             </div>
           ) : (
             <>
-   {/*         <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */}
+    {/*        <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */} 
               <p className='time-remaining'>{timer} seconds remaining</p>
               <div className="timer">
                 <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
               </div>
-              <AnswerForm celebNames={celebNames} index={index}/>
+              <AnswerForm celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
         
             </>
           )}
@@ -98,20 +127,27 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
       );
           }
 
-  function AnswerForm({celebNames, index}) {
+  function AnswerForm({celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
     const [answer, setAnswer] = useState('')
     const [celebName, setCelebName] = useState('')
     const [celebCountry, setCelebCountry]= useState('')
     const [answerBorder, setAnswerBorder] = useState(true)
+    
+
+    const [timer, setTimer] = useState(60)
+    const [loaded, setLoaded] = useState(false)
+
+
+
 
     //Handling SUbmit
   const handleSubmit = (e) =>{
     const userInput =  e.target[0].value
     e.preventDefault()
-  
+    
   //Ignoring case sensitivity
      const userAnswer = userInput.toLowerCase()
-     const gameAnswer = celebName.toLowerCase()
+     const gameAnswer = celebNames[(index+4)%5].toLowerCase()
   
   //Matching Number of Chars 
      const userAnswerCharNum = userAnswer.length
@@ -132,9 +168,9 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
 
 
     if(gameAnswer === userAnswer){
-      displayNewCeleb()
+      handleNextCeleb()
       setAnswer('')
-      setAnswerBorder(true)
+      //setAnswerBorder(true)
       console.log("CORRECT!")
 
     }else{
@@ -153,8 +189,8 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
        <input onChange={(e)=> setAnswer(e.target.value)} value={answer} type={'text'} placeholder={'Your Answer'} 
         className={answerBorder ? 'submitForm' : 'submitFormWrong'}/>
         <button type='Submit'> Click to Submit</button>
-     {/*    <p>Nationality : {celebCountry}</p>
-        <p>you have {gameAnswerCharNum - answer.length} letters left</p> */}
+
+      {/*   <p>you have {gameAnswerCharNum - answer.length} letters left</p>  */}
       </form>
     )
   }
