@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import styles from "./SignIn.module.css"
+import { useNavigate } from "react-router-dom";
 
 function SignIn({ setIsHeaderVisible }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
 
     const signIn = (e) => {
         e.preventDefault();
@@ -14,6 +17,7 @@ function SignIn({ setIsHeaderVisible }) {
                 setIsHeaderVisible(true);
                 setEmail('');
                 setPassword('');
+                navigate('/menu');
                 console.log(userCredential);
             })
             .catch((error) => {

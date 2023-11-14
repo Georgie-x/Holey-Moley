@@ -22,7 +22,7 @@ function NavBar() {
             <div className={isMenuOpen ? styles.mainNav : styles.mainNavToggle}>
                 <nav>
                     <ul>
-                        <li><Link className={styles.navLinks} to="/game" onClick={() => { handleState() }}>Play Game</Link></li>
+                        <li><Link className={styles.navLinks} to="/menu" onClick={() => { handleState() }}>Play Game</Link></li>
                         <li><Link className={styles.navLinks} to="/highscores" onClick={() => {
                             handleState()
                         }}>High Scores</Link></li>

@@ -1,0 +1,75 @@
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+.container {
+    display: flex;
+    width: 100vw;
+    animation: fadeIn 1.5s;
+    justify-content: center;
+    height: 100vh;
+    margin-top: 100px;
+}
+
+.menu {
+    display:flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: 600px;
+    text-align: center;
+}
+
+.button {
+    align-self:baseline;
+    width: 200px;
+}
+
+.button:hover {
+    cursor: pointer;
+    box-shadow: 1px 2px 9px 0px #FFA260;
+    transform: translateY(-0.30em);
+}
+
+.buttonclicked {
+    border: none;
+    color:white;
+    background-color: #FFA260;
+    box-shadow: 1px 2px 9px 0px #FFA260;
+    transform: translateY(-0.30em);
+}
+
+.buttons {
+display: flex;
+justify-content: space-between;
+width: 600px;
+}
+
+.showcards {
+    
+    
+    width: 200px;
+    height: 300px;
+}
+
+.showcardcont {
+    margin-top: 40px;
+    display: flex;
+}
+
+.showcards img {
+    width: 190px;
+    height: 290px;
+    border-radius: 10px;
+    transition: all .3s;
+}
+
+.showcards img:hover {
+    transform: translateY(-0.35em);
+    box-shadow: 1px 2px 9px 0px #FFA260;
+}
+
+
+     
+
+

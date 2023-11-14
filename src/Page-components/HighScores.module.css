@@ -37,14 +37,11 @@
   
   
   th  {
-    font-family: 'Playpen Sans', cursive;
+    
     border: rgb(16, 189, 189) solid 1.5px;
   }
   
-  td {
   
-    font-family: 'Playpen Sans', cursive;
-  }
   
   
   td:nth-child(1) {
@@ -59,7 +56,7 @@
   }
 
   tr:nth-child(2n) {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 246, 234);
   }
   
   .bottomName {
