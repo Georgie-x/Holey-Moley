@@ -115,7 +115,7 @@ function Launcher(){
                 slingshot = new SlingShot(300 + bounce, 850 + bounce, bird.body, engine.current.world);
                 slingshotRef.current = slingshot;
             }
-        }, 5000);
+        }, 5100);
         return () => clearTimeout(newBallTimer);
     }, [birdReleased]);
 
@@ -153,13 +153,26 @@ function Launcher(){
                     slingshotRef.current = null;
                     Matter.Body.applyForce(birdRef.current.body, birdPosition, force);
                     setBirdReleased(!birdReleased);
+
+                       // Log bird position every 0.1 seconds
+                    const intervalId = setInterval(() => {
+                    const x_bird = birdRef.current.body.position.x;
+                    const y_bird = birdRef.current.body.position.y;
+                    const x_mouse = mousePosition.current.x;
+                    const y_mouse = mousePosition.current.y;
+                    console.log(`Bird position: (${x_bird}, ${y_bird})`, `Mouse position: (${x_mouse}, ${y_mouse})`);
+                  }, 500);
+
+
                     setTimeout(()=>{
+                      clearInterval(intervalId);
                       const x_bird = birdRef.current.body.position.x
                       const y_bird = birdRef.current.body.position.y
                       const gameWindow = document.getElementsByClassName('game-window')[0];
                       const gameWindowRect = gameWindow.getBoundingClientRect();
-                      const x = x_bird - gameWindowRect.left;
-                      const y = y_bird - gameWindowRect.top - 51;
+                      console.log(gameWindowRect.left, gameWindowRect.top, x_bird, y_bird)
+                      const x = x_bird  //- gameWindowRect.left;
+                      const y = y_bird  //- gameWindowRect.top - 51;
 
                       if (x < 150 && y < 160) { setblock1(false); }
                       else if (x >= 150 && x < 300 && y < 160) { setblock2(false); }
@@ -209,6 +222,9 @@ function Launcher(){
       })
     }
 
+
+
+    
  const handleClick = (e) => {
       const x_mouse = e.clientX
       const y_mouse = e.clientY

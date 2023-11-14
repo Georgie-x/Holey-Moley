@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import io from 'socket.io-client'
 /* import styles from "./GameTimer.module.css" */
-
+import { UserContext, UserProvider } from '../Users/UserContext'
 
 
 const socket = io.connect("http://localhost:3001")
@@ -128,6 +128,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
           }
 
   function AnswerForm({celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
+    const { user, setUser } = useContext(UserContext);
     const [answer, setAnswer] = useState('')
     const [celebName, setCelebName] = useState('')
     const [celebCountry, setCelebCountry]= useState('')
@@ -143,7 +144,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
     //Handling SUbmit
   const handleSubmit = (e) =>{
 
-    console.log('HEEEELLLLLLOOOOOO')
+    console.log('HEEEELLLLLLOOOOOO', user, user.length)
     const userInput =  e.target[0].value
     e.preventDefault()
     
