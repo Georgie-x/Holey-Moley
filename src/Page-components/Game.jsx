@@ -1,11 +1,15 @@
-import {AnswerInput, ClueDisplay, GameTimer, Launcher, Mole, PictureMask, Picture} from "../Game-components.jsx"
+import { AnswerInput, ClueDisplay, GameTimer, Launcher, Mole, PictureMask, Picture } from "../Game-components/index.jsx"
 import styles from "./Game.module.css"
 
-function Game(){
+function Game() {
     return (
-    <div>
-        <h1>Game</h1>
-        <Launcher />
+        <div>
+
+            <div className={styles.gamecontainer}>
+                <div className={styles.gameborder}>
+                    <Launcher />
+                </div>
+            </div>
         </div>
     )
 }
