@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import io from 'socket.io-client'
-import styles from "./GameTimer.module.css"
+/* import styles from "./GameTimer.module.css" */
 
 
 
@@ -45,7 +45,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
             setTimer(countdownDuration)
             if(countdownDuration === 0) {
                 handleNextCeleb()
-                setIndex((index+1)%5)
+                setIndex((index+1))
             }
         })
 
@@ -108,7 +108,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
 
     return (
         <>
-          {index >= 5 ? (
+          {index > 5 ? (
             <div className="game-over">
               <h1>Game Over</h1>
             </div>
@@ -142,6 +142,8 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
 
     //Handling SUbmit
   const handleSubmit = (e) =>{
+
+    console.log('HEEEELLLLLLOOOOOO')
     const userInput =  e.target[0].value
     e.preventDefault()
     
@@ -174,6 +176,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
       console.log("CORRECT!")
 
     }else{
+      console.log(gameAnswer, userAnswer)
       console.log("this aint it dummy")
       console.log(difference, "You've got this much wrong")
       setAnswerBorder(false)

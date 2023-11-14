@@ -4,12 +4,13 @@ import { Bird } from '../Game-components.jsx/game-objects/bird'
 import { SlingShot } from '../Game-components.jsx/game-objects/slingshot'
 import birdImage from '../Game-components.jsx/game-objects/birdImage.gif'
 import { getShowCharacters } from '../axios'
-import GameTimer from '../Game-components.jsx/GameTimer'
+import GameTimer from './GameTimer'
 
 import styles from "./Launcher.module.css"
 
 
 function Launcher(){
+    console.log('heloooooooo')
     const [birdReleased, setBirdReleased] = useState(false)
     const [celebURLs, setCelebURLs] = useState([])
     const [answer, setAnswer] = useState('');
