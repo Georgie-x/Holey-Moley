@@ -3,8 +3,10 @@ import Matter, { Engine, Render, Bodies, World, } from 'matter-js'
 import { Bird } from '../Game-components.jsx/game-objects/bird'
 import { SlingShot } from '../Game-components.jsx/game-objects/slingshot'
 import birdImage from '../Game-components.jsx/game-objects/birdImage.gif'
+import preFireMole from '../Game-components.jsx/game-objects/preFireMole.png'
 import { getShowCharacters } from '../axios'
 import GameTimer from './GameTimer'
+import explosion from '../Game-components.jsx/game-objects/explosion.jpeg'
 
 import styles from "./Launcher.module.css"
 
@@ -45,6 +47,7 @@ function Launcher(){
     }))
 
     const birdRef = useRef(null);
+    const wallLineRef = useRef(null);
     const mousePosition = useRef({ x: 0, y: 0 });
     const isDragging = useRef(false);
     const slingshotRef = useRef(null);
@@ -79,7 +82,7 @@ function Launcher(){
         World.add(engine.current.world, [
             Bodies.rectangle(gameWindowWidth / 2, wallThickness / 2, gameWindowWidth, 81, { isStatic: true, restitution: elasticity, chamfer: chamfer }),
             Bodies.rectangle(wallThickness / 2, gameWindowHeight / 2, wallThickness, gameWindowHeight, { isStatic: true, restitution: elasticity, chamfer: chamfer }),
-            Bodies.rectangle(gameWindowWidth / 2, gameWindowHeight - wallThickness / 2, gameWindowWidth, wallThickness, { isStatic: true, restitution: elasticity, chamfer: chamfer }),
+            Bodies.rectangle(gameWindowWidth / 2, gameWindowHeight -  wallThickness / 2, gameWindowWidth, wallThickness, { isStatic: true, restitution: elasticity, chamfer: chamfer }),
             Bodies.rectangle(gameWindowWidth - wallThickness / 2, gameWindowHeight / 2, wallThickness, gameWindowHeight, { isStatic: true, restitution: elasticity,  }),
         ])
 
@@ -87,10 +90,10 @@ function Launcher(){
 
         Render.run(render)
 
-        bird = new Bird(300, 820, 25, engine.current.world, birdImage);
+        bird = new Bird(300, 820, 25, engine.current.world, preFireMole);
         birdRef.current = bird
         const bounce = 5 * (Math.random() - 0.5);
-        slingshot = new SlingShot(300 + bounce, 800 + bounce, bird.body, engine.current.world);
+        slingshot = new SlingShot(300 + bounce, 850 + bounce, bird.body, engine.current.world);
         slingshotRef.current = slingshot
 
         return () => {
@@ -109,7 +112,7 @@ function Launcher(){
             if (birdRef.current) {
                 World.remove(engine.current.world, birdRef.current.body);
                 if (slingshotRef.current) World.remove(engine.current.world, slingshotRef.current.sling);
-                bird = new Bird(300 * Math.random(), 900, 25, engine.current.world, birdImage);
+                bird = new Bird(300 * Math.random(), 900, 25, engine.current.world, preFireMole);
                 birdRef.current = bird;
                 const bounce = 5 * (Math.random() - 0.5);
                 slingshot = new SlingShot(300 + bounce, 850 + bounce, bird.body, engine.current.world);
@@ -126,12 +129,15 @@ function Launcher(){
             const x = e.clientX - gameWindowRect.left;
             const y = e.clientY - gameWindowRect.top;
             mousePosition.current = { x, y };
+            slingshotRef.current.sling.render.strokeStyle =  (Matter.Vector.magnitude(Matter.Vector.sub(slingshotRef.current.sling.pointA, birdRef.current.body.position)) <  150 && birdRef.current.body.position.y > 850)? 'green' : 'red';
         }
     };
 
     const handleMouseDown = (e) => {
         if(birdRef.current && slingshotRef.current){
             isDragging.current = true;
+            
+
         }
     };
 
@@ -142,13 +148,15 @@ function Launcher(){
               if (birdRef.current && slingshotRef.current) {
                 const birdPosition = birdRef.current.body.position;
                 const slingPosition = slingshotRef.current.sling.pointA;
-                const strength = 0.0005;
+                const strength = 0
                 const force = {
-                  x: (slingPosition.x - mousePosition.current.x) * strength,
-                  y: (slingPosition.y - mousePosition.current.y) * strength,
+                  x: (slingPosition.x - birdPosition.x) * strength,
+                  y: (slingPosition.y - birdPosition.y) * strength,
                 };
+               
 
-                if (mousePosition.current.y > slingPosition.y && mousePosition.current.x > 0 && mousePosition.current.x < 600 ) {
+                if (slingshotRef.current.sling.render.strokeStyle === 'green') {
+                    birdRef.current.body.render.sprite.texture = birdImage
                     World.remove(engine.current.world, slingshotRef.current.sling);
                     slingshotRef.current = null;
                     Matter.Body.applyForce(birdRef.current.body, birdPosition, force);
@@ -163,6 +171,17 @@ function Launcher(){
                     console.log(`Bird position: (${x_bird}, ${y_bird})`, `Mouse position: (${x_mouse}, ${y_mouse})`);
                   }, 500);
 
+                    setTimeout(() => {
+                      const wallLine = Bodies.rectangle(600 / 2, 1000 - 150 - 20 / 2, 600,  20, { isStatic: true, restitution: 1});
+                      wallLineRef.current = wallLine
+                      World.add(engine.current.world, [wallLine])
+                    }, 500)
+
+                    setTimeout(() => {
+                      birdRef.current.body.render.sprite = null;
+                      birdRef.current.body.render.fillStyle = 'red';
+                    }, 4800)
+
 
                     setTimeout(()=>{
                       clearInterval(intervalId);
@@ -173,36 +192,50 @@ function Launcher(){
                       console.log(gameWindowRect.left, gameWindowRect.top, x_bird, y_bird)
                       const x = x_bird  //- gameWindowRect.left;
                       const y = y_bird  //- gameWindowRect.top - 51;
-
-                      if (x < 150 && y < 160) { setblock1(false); }
-                      else if (x >= 150 && x < 300 && y < 160) { setblock2(false); }
-                      else if (x >= 300 && x < 450 && y < 160) { setblock3(false); }
-                      else if (x >= 450 && x < 600 && y < 160) { setblock4(false); }
-                      else if (x < 150 && y >= 160 && y < 320) { setblock5(false); }
-                      else if (x >= 150 && x < 300 && y >= 160 && y < 320) { setblock6(false); }
-                      else if (x >= 300 && x < 450 && y >= 160 && y < 320) { setblock7(false); }
-                      else if (x >= 450 && x < 600 && y >= 160 && y < 320) { setblock8(false); }
-                      else if (x < 150 && y >= 320 && y < 480) { setblock9(false); }
-                      else if (x >= 150 && x < 300 && y >= 320 && y < 480) { setblock10(false); }
-                      else if (x >= 300 && x < 450 && y >= 320 && y < 480) { setblock11(false); }
-                      else if (x >= 450 && x < 600 && y >= 320 && y < 480) { setblock12(false); }
-                      else if (x < 150 && y >= 480 && y < 640) { setblock13(false); }
-                      else if (x >= 150 && x < 300 && y >= 480 && y < 640) { setblock14(false); }
-                      else if (x >= 300 && x < 450 && y >= 480 && y < 640) { setblock15(false); }
-                      else if (x >= 450 && x < 600 && y >= 480 && y < 640) { setblock16(false); }
-                      else if (x < 150 && y >= 640 && y < 800) { setblock17(false); }
-                      else if (x >= 150 && x < 300 && y >= 640 && y < 800) { setblock18(false); }
-                      else if (x >= 300 && x < 450 && y >= 640 && y < 800) { setblock19(false); }
-                      else if (x >= 450 && x < 600 && y >= 640 && y < 800) { setblock20(false); }
+                      World.remove(engine.current.world, wallLineRef.current);
+                      const radiusOfExplosion = 150
+                      birdRef.current.body.circleRadius=radiusOfExplosion * 2/3
+                      const blocks = [
+                        { x: 75, y: 80, setBlock: setblock1 },
+                        { x: 225, y: 80, setBlock: setblock2 },
+                        { x: 375, y: 80, setBlock: setblock3 },
+                        { x: 525, y: 80, setBlock: setblock4 },
+                        { x: 75, y: 240, setBlock: setblock5 },
+                        { x: 225, y: 240, setBlock: setblock6 },
+                        { x: 375, y: 240, setBlock: setblock7 },
+                        { x: 525, y: 240, setBlock: setblock8 },
+                        { x: 75, y: 400, setBlock: setblock9 },
+                        { x: 225, y: 400, setBlock: setblock10 },
+                        { x: 375, y: 400, setBlock: setblock11 },
+                        { x: 525, y: 400, setBlock: setblock12 },
+                        { x: 75, y: 560, setBlock: setblock13 },
+                        { x: 225, y: 560, setBlock: setblock14 },
+                        { x: 375, y: 560, setBlock: setblock15 },
+                        { x: 525, y: 560, setBlock: setblock16 },
+                        { x: 75, y: 720, setBlock: setblock17 },
+                        { x: 225, y: 720, setBlock: setblock18 },
+                        { x: 375, y: 720, setBlock: setblock19 },
+                        { x: 525, y: 720, setBlock: setblock20 }
+                      ];
+                      
+                      World.remove(engine.current.world, wallLineRef.current);
+                      
+                      for (let i = 0; i < blocks.length; i++) {
+                        const { x: blockX, y: blockY, setBlock } = blocks[i];
+                        const distance = Math.sqrt((x - blockX) ** 2 + (y - blockY) ** 2);
+                        if (distance <= radiusOfExplosion) {
+                          setBlock(false);
+                        }
+                      }
                     }, 5000)
                 }
                 else {
                   World.remove(engine.current.world, birdRef.current.body);
                   World.remove(engine.current.world, slingshotRef.current.sling);
-                  bird = new Bird(300, 820, 25, engine.current.world, birdImage);
+                  bird = new Bird(300, 900, 25, engine.current.world, preFireMole);
                   birdRef.current = bird
                   const bounce = 5 * (Math.random() - 0.5);
-                  slingshot = new SlingShot(300 + bounce, 800 + bounce, bird.body, engine.current.world);
+                  slingshot = new SlingShot(300 + bounce, 850 + bounce, bird.body, engine.current.world);
                   slingshotRef.current = slingshot
                 }
             }

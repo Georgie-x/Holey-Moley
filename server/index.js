@@ -59,6 +59,12 @@ io.on("connection", (socket) => {
         io.emit("update_celeb", newCelebURL);
       });
 
+      socket.on("next_answer", (newAnswer) => {
+        console.log("next answer", newAnswer);
+        io.emit("update_answer", newAnswer);
+        io.emit("correctAnswer", newAnswer); // Emit the correctAnswer event
+      });
+
     socket.on("disconnect", () => {
         socket.disconnect()
         console.log("a user just disconnected")
