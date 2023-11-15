@@ -55,6 +55,9 @@ width: 600px;
 .showcardcont {
     margin-top: 40px;
     display: flex;
+    height: 650px;
+    width: 600px;
+    flex-wrap: wrap;
 }
 
 .showcards img {

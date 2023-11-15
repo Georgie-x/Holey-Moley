@@ -1,7 +1,7 @@
 import styles from "./Menu.module.css"
 import { Link } from "react-router-dom"
 
-function Menu() {
+function Menu({ showsArray }) {
 
   return (
     <>
@@ -11,13 +11,23 @@ function Menu() {
             <button className={styles.button} onClick={(e) => e.target.classList.toggle(styles.buttonclicked)}>One Player</button>
             <button className={styles.button} onClick={(e) => e.target.classList.toggle(styles.buttonclicked)}>Two Player</button>
           </div>
-          <h3>Pick a show!</h3>
+          <h1>Pick a show!</h1>
+
+
           <div className={styles.showcardcont}>
-            <div className={styles.showcards}><Link to="/setup">
-              <img src="src/assets/friends.png" alt="friends showcard" />
-            </Link></div>
-            <div className={styles.showcards}><Link><img src="src/assets/got.png" alt="game of thrones showcard" /></Link></div>
-            <div className={styles.showcards}><Link><img src="src/assets/homeland.png" alt="homeland showcard" /></Link></div>
+            {showsArray.map((show) => {
+              console.log(show.show_img_url)
+              return (
+
+                <div className={styles.showcards}><Link to="/setup">
+                  <img src={show.show_img_url} alt="showcard" />
+                </Link></div>
+              )
+            })}
+
+
+            {/* <div className={styles.showcards}><Link><img src="src/assets/got.png" alt="game of thrones showcard" /></Link></div>
+            <div className={styles.showcards}><Link><img src="src/assets/homeland.png" alt="homeland showcard" /></Link></div> */}
           </div>
 
         </div>
