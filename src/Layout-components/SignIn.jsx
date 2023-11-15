@@ -2,13 +2,21 @@ import React, { useState, useContext } from "react";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import styles from "./SignIn.module.css"
+
+import { useNavigate } from "react-router-dom";
+
 import { UserContext, UserProvider } from "../Users/UserContext";
+
 
 
 function SignIn({ setIsHeaderVisible }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+
     const { user, setUser } = useContext(UserContext);
+
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
@@ -22,6 +30,7 @@ function SignIn({ setIsHeaderVisible }) {
 
                 setEmail('');
                 setPassword('');
+                navigate('/menu');
                 console.log(userCredential);
             })
             .catch((error) => {
