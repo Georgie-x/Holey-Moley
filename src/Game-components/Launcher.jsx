@@ -11,8 +11,9 @@ import explosion from '../Game-components.jsx/game-objects/explosion.jpeg'
 import styles from "./Launcher.module.css"
 
 
-function Launcher(){
+function Launcher({player1, player2, players}){
     console.log('heloooooooo')
+    console.log(player1, player2)
     const [birdReleased, setBirdReleased] = useState(false)
     const [celebURLs, setCelebURLs] = useState([])
     const [answer, setAnswer] = useState('');
@@ -306,7 +307,7 @@ function Launcher(){
                 <div ref={scene} style={{ width: '100%', height: '100%' }} />
               </div>
             </div>
-                <GameTimer celebNames={celebNames} celebURLs={celebURLs} setblock1={setblock1}  setblock2={setblock2}  setblock3={setblock3}  setblock4={setblock4}  setblock5={setblock5}  setblock6={setblock6}  setblock7={setblock7}  setblock8={setblock8}  setblock9={setblock9} setblock10={setblock10}  setblock11={setblock11}  setblock12={setblock12} setblock13={setblock13}  setblock14={setblock14}  setblock15={setblock15}  setblock16={setblock16}  setblock17={setblock17} setblock18={setblock18}  setblock19={setblock19}  setblock20={setblock20}/>
+                <GameTimer players={players} player1={player1} player2={player2} celebNames={celebNames} celebURLs={celebURLs} setblock1={setblock1}  setblock2={setblock2}  setblock3={setblock3}  setblock4={setblock4}  setblock5={setblock5}  setblock6={setblock6}  setblock7={setblock7}  setblock8={setblock8}  setblock9={setblock9} setblock10={setblock10}  setblock11={setblock11}  setblock12={setblock12} setblock13={setblock13}  setblock14={setblock14}  setblock15={setblock15}  setblock16={setblock16}  setblock17={setblock17} setblock18={setblock18}  setblock19={setblock19}  setblock20={setblock20}/>
             <div className="block-container">
               <div className={block1 ? 'one' : 'removeBlock'} ></div>
               <div className={block2 ? 'two' : 'removeBlock'}></div>
