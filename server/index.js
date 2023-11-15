@@ -25,19 +25,19 @@ io.on("connection", (socket) => {
     console.log(`User Connected ${socket.id}`)
 
     socket.on('new_game', (newCelebURL) => {
-        socket.to(newCelebURL.room).emit('update_celeb', newCelebURL);
+        socket.to(newCelebURL).emit('update_celeb', newCelebURL);
       });
     
-    socket.on('createRoom', ({room, username}) => {
-        rooms[room] = {players: [{ id: socket.id, username}]}
+    socket.on('createRoom', ({room, user}) => {
+        rooms[room] = {players: [{ id: socket.id, user}]}
         socket.join(room)
         io.to(room).emit('updatePlayers', rooms[room].players)
     })
 
-    socket.on('joinRoom', ({room, username}) => {
+    socket.on('joinRoom', ({room, user}) => {
         if(rooms[room]) {
             socket.join(room)
-            rooms[room].players.push({id: socket.id, username})
+            rooms[room].players.push({id: socket.id, user})
             io.to(room).emit('updatePlayers', rooms[room].players)
 
             if (rooms[room].players.length >= 2) {
@@ -47,6 +47,7 @@ io.on("connection", (socket) => {
             console.log(`Room '${room}' does not exist`);
             socket.emit('roomNotFound', { error: `Room '${room}' does not exist` });
         }
+    
     })
 
     socket.on("start_timer", () => {
@@ -80,7 +81,11 @@ io.on("connection", (socket) => {
       socket.on("next_answer", (newAnswer) => {
         console.log("next answer", newAnswer);
         io.emit("update_answer", newAnswer);
-        io.emit("correctAnswer", newAnswer); // Emit the correctAnswer event
+        io.emit("correctAnswer", newAnswer);
+      });
+
+      socket.on('update_score', ({ player1Score, player2Score }) => {
+        io.emit('update_score', { player1Score, player2Score });
       });
 
     socket.on("disconnect", () => {

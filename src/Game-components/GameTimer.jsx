@@ -6,7 +6,7 @@ import { UserContext, UserProvider } from '../Users/UserContext'
 
 const socket = io.connect("http://localhost:3001")
 
-function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
+function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
     //have 5 celeb urls
     const [index, setIndex] = useState(0)
     const [celebURL, setCelebURL] = useState([
@@ -121,7 +121,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
               <div className="timer">
                 <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
               </div>
-              <AnswerForm celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
+              <AnswerForm players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
         
             </>
           )}
@@ -129,26 +129,26 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
       );
           }
 
-  function AnswerForm({celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
+  function AnswerForm({players, player1, player2, celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
     const { user, setUser } = useContext(UserContext);
     const [answer, setAnswer] = useState('')
     const [celebName, setCelebName] = useState('')
     const [celebCountry, setCelebCountry]= useState('')
     const [answerBorder, setAnswerBorder] = useState(true)
-    const [player1, setPlayer1] = useState('')
-    const [player2, setPlayer2] = useState('')
+    // const [player1, setPlayer1] = useState('')
+    // const [player2, setPlayer2] = useState('')
     const [player1Score, setPlayer1Score] = useState(0)
     const [player2Score, setPlayer2Score] = useState(0)
-    const [isPlayer1, setIsPlayer1] = useState(false)
-    const [isPlayer2, setIsPlayer2] = useState(false)
-    if (!player1 && user) {
-      setPlayer1(user)
-      setIsPlayer1(true) }
-    if (!user && !player2) {
-      setPlayer2('Guest')
-      setIsPlayer2(true)
+    // const [isPlayer1, setIsPlayer1] = useState(false)
+    // const [isPlayer2, setIsPlayer2] = useState(false)
+    // if (!player1 && user) {
+    //   setPlayer1(user)
+    //   setIsPlayer1(true) }
+    // if (!user && !player2) {
+    //   setPlayer2('Guest')
+    //   setIsPlayer2(true)
 
-    }
+    // }
 
     const [timer, setTimer] = useState(60)
     const [loaded, setLoaded] = useState(false)
@@ -181,23 +181,33 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
       const difference = 
       gameAnswerArr.filter((element) => !userAnswerArr.includes(element)); 
 
+      if (gameAnswer === userAnswer) {
+        handleNextCeleb();
+        setAnswer('');
+        if (player1) {
+            setPlayer1Score(player1Score + 1);
+            socket.emit("update_score", { player1Score: player1Score + 1, player2Score });
+        } else {
+            setPlayer2Score(player2Score + 1);
+            socket.emit("update_score", { player1Score, player2Score: player2Score + 1 });
+        }
+        console.log("CORRECT!");
+      } else {
+        console.log(gameAnswer, userAnswer);
+        console.log("This ain't it dummy");
+      }
+    };
 
+    useEffect(() => {
+      socket.on("update_score", ({ player1Score, player2Score }) => {
+          setPlayer1Score(player1Score);
+          setPlayer2Score(player2Score);
+      });
 
-
-    if(gameAnswer === userAnswer){
-      handleNextCeleb()
-      setAnswer('')
-      isPlayer1 ? setPlayer1Score(player1Score+1) : setPlayer2Score(player2Score+1)
-      console.log("CORRECT!")
-
-    }else{
-      console.log(gameAnswer, userAnswer)
-      console.log("this aint it dummy")
-      console.log(difference, "You've got this much wrong")
-    }
-  }
-    
-
+      return () => {
+          socket.off("update_score");
+      };
+  }, []);
 
 
 
@@ -206,7 +216,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
        <input onChange={(e)=> setAnswer(e.target.value)} value={answer} type={'text'} placeholder={'Your Answer'} 
         className={answerBorder ? 'submitForm' : 'submitFormWrong'}/>
         <button type='Submit'> Click to Submit</button>
-        <h3>{player1}: {player1Score}    {player2}:{player2Score} </h3>
+        <h3>{players[0].user}: {player1Score}    {players[1].user}:{player2Score} </h3>
 
       {/*   <p>you have {gameAnswerCharNum - answer.length} letters left</p>  */}
       </form>
