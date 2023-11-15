@@ -51,6 +51,7 @@ function Launcher(){
     const mousePosition = useRef({ x: 0, y: 0 });
     const isDragging = useRef(false);
     const slingshotRef = useRef(null);
+    const trajectoryLineRef = useRef(null);
     let bird;
     let slingshot;
 
@@ -128,6 +129,7 @@ function Launcher(){
             const gameWindowRect = gameWindow.getBoundingClientRect();
             const x = e.clientX - gameWindowRect.left;
             const y = e.clientY - gameWindowRect.top;
+
             mousePosition.current = { x, y };
             slingshotRef.current.sling.render.strokeStyle =  (Matter.Vector.magnitude(Matter.Vector.sub(slingshotRef.current.sling.pointA, birdRef.current.body.position)) <  150 && birdRef.current.body.position.y > 850)? 'green' : 'red';
         }
@@ -136,6 +138,7 @@ function Launcher(){
     const handleMouseDown = (e) => {
         if(birdRef.current && slingshotRef.current){
             isDragging.current = true;
+            
             
 
         }
