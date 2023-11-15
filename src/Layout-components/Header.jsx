@@ -1,23 +1,16 @@
 import NavBar from './NavBar.jsx'
+import styles from "./Header.module.css"
 
 function Header() {
 
     return (
         <>
-            <h1 className="mainHeader">
-                <span className="h">h</span>
-                <span className="o">o</span>
-                <span className="l">l</span>
-                <span className="e">e</span>
-                <span className="y">y</span>
-                <span className="m">m</span>
-                <span className="o">o</span>
-                <span className="l">l</span>
-                <span className="e">e</span>
-                <span className="y">y</span>
-
-            </h1>
-            <NavBar />
+            <div className={styles.container}>
+                <img className={styles.logo} src="src/assets/HMLogo3.png" alt="holey moley logo" />
+                <div className={styles.rightnav}>
+                    <NavBar />
+                </div>
+            </div>
         </>
 
     )

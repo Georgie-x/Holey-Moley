@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+
+
+/* Header and NavBar Styling */
+
+.o {
+  color:rgb(203, 133, 29)
+}
+
+.l {
+  color: rgb(14, 177, 123);
+}
+
+.e {
+  color:rgb(125, 176, 22)
+}
+
+.y {
+  color: rgb(177, 14, 153);
+}
+
+.m {
+  color: rgb(15, 201, 22);
+}
+
+
+
+.mainHeader {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+  width: 50%;
+  margin:0;
+}
+
+.container {
+  margin-right: 30px;
+  margin-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+}
+
+.rightnav {
+  display: flex;
+  
+}
+
+.logo {
+  width: 230px;
+}
+
+

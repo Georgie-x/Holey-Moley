@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@200&display=swap');
+
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+.highscores{
+    margin-top: 10%;
+    /* background-color: rgb(240, 240, 240); */
+    color:rgb(16, 189, 189);
+    
+    
+    animation: 0.6s ease-out 0s 1 slideInFromLeft;
+    display: flex;
+    justify-content: center;
+  
+  }
+
+.highscores table {
+    border-radius: 12px;
+    width: 600px;
+    border: rgb(16, 189, 189) solid 1px;
+    /* background-color: rgb(16, 189, 189); */
+  }
+  
+   th, tr {
+     /* color: rgb(240, 240, 240); */
+    font-size: larger;
+     /* background-color: rgb(16, 189, 189); */
+    border:rgb(16, 189, 189) solid 1px;
+  }
+  
+  
+  th  {
+    font-family: 'Playpen Sans', cursive;
+    border: rgb(16, 189, 189) solid 1.5px;
+  }
+  
+  td {
+  
+    font-family: 'Playpen Sans', cursive;
+  }
+  
+  
+  td:nth-child(1) {
+    text-align: center;
+  }
+  
+  
+  td:nth-child(2) {
+    text-align: right;
+    text-align:center ;
+    
+  }
+
+  tr:nth-child(2n) {
+    background-color: rgb(240, 240, 240);
+  }
+  
+  .bottomName {
+    border-radius: 0px 0px 0px 10px;
+  }
+  .bottomScore {
+    border-radius: 0px 0px 10px 0px;
+  }
+  .scoreName {
+    border-radius: 10px 0px 0px 0px;
+  }
+  .scoreHigh {
+    border-radius: 0px 10px 0px 0px;
+  }

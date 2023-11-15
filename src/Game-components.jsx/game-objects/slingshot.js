@@ -10,7 +10,12 @@ class SlingShot {
         },
         bodyB: body,
         stiffness: 0.001,
-        length: 100
+        length: 100,
+        render: {
+          visible: true,
+          lineWidth: 5,
+          strokeStyle: 'black' // Set the stroke color to red
+        }
       };
       this.sling = Constraint.create(options);
       World.add(world, this.sling);

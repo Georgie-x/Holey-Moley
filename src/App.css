@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
+/* *{
+  background-color: transparent;
+} */
+/* 
 #root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-  }
+  } */
   
-  .logo {
+  /* .logo {
     height: 6em;
     padding: 1.5em;
     will-change: filter;
@@ -41,10 +45,12 @@
   
   .read-the-docs {
     color: #888;
-  }
+  } */
   
   
   .block-container {
+    margin-top: 51px;
+    position: absolute;
     background-size: 300px;
     background-image: url('');
     display: grid;
@@ -53,8 +59,8 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   }
-  .block-container > div {
-    z-index: 1;
+  .block-container div {
+    z-index: 3;
   }
   .hey {
     display: flex;
@@ -191,7 +197,7 @@
   .seventeen {
     background-color: rgba(203, 133, 29, 100);
     width: 150px;
-    height: 160px;
+    height: 145px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -199,7 +205,7 @@
   .eighteen {
     background-color: rgba(203, 133, 29, 100);
     width: 150px;
-    height: 160px;
+    height: 145px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -207,7 +213,7 @@
   .nineteen {
     background-color: rgba(203, 133, 29, 100);
     width: 150px;
-    height: 160px;
+    height: 145px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -215,7 +221,7 @@
   .twenty {
     background-color: rgba(203, 133, 29, 100);
     width: 140px;
-    height: 160px;
+    height: 145px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -237,6 +243,7 @@
     font-family: 'Pixelify Sans', sans-serif;
   }
   .game-window-and-button-container {
+    
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -248,14 +255,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 800px;
     z-index: 1;
     border: solid black 5px;
     box-sizing: border-box;
   }
   .game-window {
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    z-index: 4;
   }
   button {
     padding: 10px;
@@ -277,7 +284,10 @@
     transition: all 0.25s;
     z-index:3;
   }
+
+  
   .timer {
+
     position:relative;
     z-index: 1;
     background-color: black;
@@ -296,4 +306,22 @@
 
   .time-remaining {
     z-index: 30;
+    
+  }
+
+  .answer-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1000px;
+    z-index:30;
+    /* position: absolute; */
+    bottom: 20px;
+    left: 120%;
+    /* transform: translateX(-50%); */
+  }
+
+  .answer-form input {
+    max-width: 200px;
+    
   }

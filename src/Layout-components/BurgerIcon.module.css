@@ -1,0 +1,52 @@
+*{
+    /* background-color: rgb(240, 240, 240); */
+    color:rgb(16, 189, 189);
+    font-family: 'Pixelify Sans', sans-serif;
+  }
+
+.burgerIcon {
+  
+    width: 2rem;
+    height: 2rem;
+    /* position: fixed;
+    top: 2.5%;
+    right: 3%; */
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+  }
+
+  .burgerIcon:hover {
+    cursor: pointer;
+  }
+  
+  .burgerBun{
+    width: 2rem;
+    height: 0.25rem;
+    background-color: rgb(125, 176, 22);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+  }
+  
+  .burgerBunClicked1{
+    transform-origin: 1px;
+    width: 2rem;
+    height: 0.25rem;
+    background-color: rgb(203, 133, 29);
+    border-radius: 10px;
+    transform: rotate(45deg);
+    transition: all 0.3s linear;
+  }
+  
+  .burgerBunClicked3{
+    transform-origin: 1px;
+    width: 2rem;
+    height: 0.25rem;
+    background-color: rgb(203, 133, 29);
+    border-radius: 10px;
+    transform: rotate(-45deg);
+    transition: all 0.3s linear;
+  }
+  
+  
+  

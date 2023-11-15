@@ -1,0 +1,32 @@
+.signedin {
+    display: flex;
+    /* position: fixed;
+    top: .5%;
+    right: 10%;  */
+    justify-content: space-between;
+}
+
+.button {
+    align-self: baseline;
+    font-size: smaller;
+    margin: 0;
+    padding: 3.5px;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-top: 1.5%;
+    background-color: #FFA260;
+    color: white;
+    border: none;
+    /* box-shadow: 4px 5px 9px 0px #FFA260; */
+}
+
+.button:hover {
+    cursor: pointer;
+    box-shadow: 1px 2px 9px 0px #FFA260;
+    transform: translateY(-0.15em);
+}
+
+.signedin p {
+    margin-top: 1.5%;
+    /* margin: 0; */
+}

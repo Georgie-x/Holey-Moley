@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 
-let countdownDuration = 30;
+let countdownDuration = 60;
 let countdownInterval = null
 const rooms = {}
 
@@ -67,10 +67,22 @@ io.on("connection", (socket) => {
     socket.on("reset_timer", () => {
         console.log("received end timer event")
         clearInterval(countdownInterval)
-        countdownDuration = 30
+        countdownDuration = 60
         countdownInterval = null
         io.emit("update_timer", countdownDuration)
     })
+
+    socket.on("next_celeb", (newCelebURL) => {
+        console.log("next celeb", newCelebURL);
+        io.emit("update_celeb", newCelebURL);
+      });
+
+      socket.on("next_answer", (newAnswer) => {
+        console.log("next answer", newAnswer);
+        io.emit("update_answer", newAnswer);
+        io.emit("correctAnswer", newAnswer); // Emit the correctAnswer event
+      });
+
     socket.on("disconnect", () => {
         socket.disconnect()
         console.log("a user just disconnected")
