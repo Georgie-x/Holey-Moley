@@ -13,36 +13,22 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  
+  align-items: center;
+
 }
-
-
-.o {
-    color:rgb(203, 133, 29)
-  }
-  
-  .l {
-    color: rgb(14, 177, 123);
-  }
-  
-  .e {
-    color:rgb(125, 176, 22)
-  }
-  
-  .y {
-    color: rgb(177, 14, 153);
-  }
-  
-  .m {
-    color: rgb(15, 201, 22);
-  }
 
   .headerbox {
       margin-top: 100px;
+      padding: 30px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
+      max-width: 380px;
+      border-radius: 20px;
+      height: 450px;
+      background-image: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1) 80%);
+
   }
 
   .button {

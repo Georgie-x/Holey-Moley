@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
-/* *{
-  background-color: transparent;
-} */
+body {
+  background-image: url("./assets/funkyGreenLandscape.jpg");
+  z-index: 1;
+  background-size: cover;
+
+}
 /* 
 #root {
     max-width: 1280px;
@@ -66,8 +69,11 @@
     display: flex;
     justify-content: center;
   }
+
+
+
   .one {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -75,7 +81,7 @@
     border: solid black 1px;
   }
   .two {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -83,7 +89,7 @@
     border: solid black 1px;
   }
   .three {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -91,7 +97,7 @@
     border: solid black 1px;
   }
   .four {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
     height: 160px;
     margin: 0;
@@ -99,7 +105,7 @@
     border: solid black 1px;
   }
   .five {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -107,7 +113,7 @@
     border: solid black 1px;
   }
   .six {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -115,7 +121,7 @@
     border: solid black 1px;
   }
   .seven {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -123,7 +129,7 @@
     border: solid black 1px;
   }
   .eight {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
     height: 160px;
     margin: 0;
@@ -131,7 +137,7 @@
     border: solid black 1px;
   }
   .nine {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -139,7 +145,7 @@
     border: solid black 1px;
   }
   .ten {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -147,7 +153,7 @@
     border: solid black 1px;
   }
   .eleven {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -155,7 +161,7 @@
     border: solid black 1px;
   }
   .twelve {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
     height: 160px;
     margin: 0;
@@ -163,7 +169,7 @@
     border: solid black 1px;
   }
   .thirteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -171,7 +177,7 @@
     border: solid black 1px;
   }
   .fourteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -179,7 +185,7 @@
     border: solid black 1px;
   }
   .fifteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 160px;
     margin: 0;
@@ -187,7 +193,7 @@
     border: solid black 1px;
   }
   .sixteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
     height: 160px;
     margin: 0;
@@ -195,7 +201,7 @@
     border: solid black 1px;
   }
   .seventeen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 145px;
     margin: 0;
@@ -203,7 +209,7 @@
     border: solid black 1px;
   }
   .eighteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 145px;
     margin: 0;
@@ -211,7 +217,7 @@
     border: solid black 1px;
   }
   .nineteen {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
     height: 145px;
     margin: 0;
@@ -219,7 +225,7 @@
     border: solid black 1px;
   }
   .twenty {
-    background-color: rgba(203, 133, 29, 100);
+    background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
     height: 145px;
     margin: 0;
