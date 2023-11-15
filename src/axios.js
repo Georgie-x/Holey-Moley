@@ -14,21 +14,21 @@ export function getAllShows() {
 }
 
 
-const dbURL = `https://holey-moley.onrender.com`
 
 
-function loginNewUser(username) {
-    return axios.post(`${dbURL}/api/users/${username}`, username)
+
+export function loginNewUser(username) {
+    return showAPI.post(`/users/${username}`, username)
 
 }
-function loginUser (username) {
-    return axios.patch(`${dbURL}/api/users/${username}`, username)
+export function loginUser(username) {
+    return showAPI.patch(`/users/${username}`, username)
 }
 
-function getChars (show_id, numOfChars) {
-    return axios.get(`${dbURL}/api/characters/${show_id}/${numOfChars}`)
+export function getChars(show_id, numOfChars) {
+    return axios.get(`/characters/${show_id}/${numOfChars}`)
 }
 
 
-export { loginNewUser, loginUser, getChars}
+
 
