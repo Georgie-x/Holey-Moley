@@ -19,17 +19,35 @@ const io = new Server(server, {
 
 let countdownDuration = 30;
 let countdownInterval = null
+const rooms = {}
 
 io.on("connection", (socket) => {
     console.log(`User Connected ${socket.id}`)
 
-    socket.on("join_room", (data) => {
-        socket.join(data)
-    })
     socket.on('new_game', (newCelebURL) => {
-        io.emit('update_celeb', newCelebURL);
+        socket.to(newCelebURL.room).emit('update_celeb', newCelebURL);
       });
-      
+    
+    socket.on('createRoom', ({room, username}) => {
+        rooms[room] = {players: [{ id: socket.id, username}]}
+        socket.join(room)
+        io.to(room).emit('updatePlayers', rooms[room].players)
+    })
+
+    socket.on('joinRoom', ({room, username}) => {
+        if(rooms[room]) {
+            socket.join(room)
+            rooms[room].players.push({id: socket.id, username})
+            io.to(room).emit('updatePlayers', rooms[room].players)
+
+            if (rooms[room].players.length >= 2) {
+                io.to(room).emit('startGame')
+            }
+        } else {
+            console.log(`Room '${room}' does not exist`);
+            socket.emit('roomNotFound', { error: `Room '${room}' does not exist` });
+        }
+    })
 
     socket.on("start_timer", () => {
         console.log("received start timer event")
@@ -56,6 +74,16 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         socket.disconnect()
         console.log("a user just disconnected")
+        for (const key in rooms) {
+            const index = rooms[key].players.findIndex((player) => player.id === socket.id);
+            if (index !== -1) {
+                rooms[key].players.splice(index, 1);
+                io.to(key).emit('updatePlayers', rooms[key].players);
+                if (rooms[key].players.length < 2) {
+                    io.to(key).emit('stopGame');
+                }
+            }
+        }
     })
 })
 

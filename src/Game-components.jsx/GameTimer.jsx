@@ -10,6 +10,12 @@ function GameTimer({celebURLs}) {
 
     useEffect(() => {
         if(!timer) {
+        socket.on('startGame', () => {
+            console.log('Game is starting!');
+            // Start the timer and show celebs when the game starts
+            startTimer();
+            handleNextCeleb();
+        });
         socket.on(`update_celeb`, (newCelebURL) => {
             setCelebURL(newCelebURL)
             console.log(index)

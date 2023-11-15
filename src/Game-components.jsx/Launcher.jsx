@@ -10,7 +10,7 @@ function Launcher(){
     const [birdReleased, setBirdReleased] = useState(false)
     const [celebURLs, setCelebURLs] = useState([])
     const [answer, setAnswer] = useState('');
-    const [celebName, setCelebName] = useState('')
+    const [celebNames, setCelebNames] = useState([])
     const [block1, setblock1] = useState(true)
     const [block2, setblock2] = useState(true)
     const [block3, setblock3] = useState(true)
@@ -194,10 +194,13 @@ function Launcher(){
     const getAllCelebs = () => {
         getShowCharacters().then(({ data }) => {
         let celebURLs = []
+        let celebNames = []
         for (let i = 0; i < 5; i++) {
           celebURLs.push(data[i].person.image.original)
+          celebNames.push(data[i].person.name)
         }
         setCelebURLs(celebURLs);
+        setCelebNames(celebNames);
       })
     }
 
@@ -227,7 +230,7 @@ function Launcher(){
                 <div ref={scene} style={{ width: '100%', height: '100%' }} />
               </div>
             </div>
-                <GameTimer celebURLs={celebURLs}/>
+            <GameTimer celebNames={celebNames} celebURLs={celebURLs} setblock1={setblock1}  setblock2={setblock2}  setblock3={setblock3}  setblock4={setblock4}  setblock5={setblock5}  setblock6={setblock6}  setblock7={setblock7}  setblock8={setblock8}  setblock9={setblock9} setblock10={setblock10}  setblock11={setblock11}  setblock12={setblock12} setblock13={setblock13}  setblock14={setblock14}  setblock15={setblock15}  setblock16={setblock16}  setblock17={setblock17} setblock18={setblock18}  setblock19={setblock19}  setblock20={setblock20}/>
             <div className="block-container">
               <div className={block1 ? 'one' : 'removeBlock'} ></div>
               <div className={block2 ? 'two' : 'removeBlock'}></div>
