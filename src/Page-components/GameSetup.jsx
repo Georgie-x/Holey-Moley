@@ -4,7 +4,7 @@ function GameSetup() {
   return (
     <>
       <h1>GameSetup</h1>
-      <h2>Choose a show</h2>
+      <img src="src/assets/0_Chris-Pratt.webp" alt="" />
     </>
   );
 }
