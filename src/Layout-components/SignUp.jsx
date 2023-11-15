@@ -17,7 +17,11 @@ function SignUp({ setIsHeaderVisible }) {
             .then((userCredential) => {
                 setIsHeaderVisible(true);
                 console.log(userCredential);
+
                 navigate('menu');
+
+                //post request to users table with email and username (not password because handled with firebase)
+
             })
             .catch((error) => {
                 console.log(error);

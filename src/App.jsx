@@ -4,12 +4,13 @@ import { PageDisplay, Auth, Header, NavBar, SignIn, Sockets } from "./Layout-com
 import SignUp from "./Layout-components/SignUp";
 import AuthDetails from "./Layout-components/AuthDetails";
 import { Launcher } from './Game-components';
+import { UserContext, UserProvider } from './Users/UserContext'
 
 
 function App() {
   return (
     <>
-
+   <UserProvider >
       <PageDisplay />
       {/* <Launcher /> */}
       {/* <NavBar />
@@ -17,6 +18,8 @@ function App() {
 
       <Auth />
       <PageDisplay /> */}
+
+    </UserProvider  >
     </>
   )
 }

@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import io from 'socket.io-client'
 /* import styles from "./GameTimer.module.css" */
-
+import { UserContext, UserProvider } from '../Users/UserContext'
 
 
 const socket = io.connect("http://localhost:3001")
@@ -99,8 +99,10 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
         const randomId = Math.floor(celebURLs.length * Math.random())
         setIndex(index+1)
         const newCelebURL = celebURLs[index]
+        const newAnswer = celebNames[index]
         socket.emit("next_celeb", newCelebURL);
         socket.emit("new_game", newCelebURL);
+        socket.emit("next_answer", newAnswer);
         setCelebURL(celebURLs[index % celebURLs.length]);
         resetTimer();
         startTimer();
@@ -128,11 +130,25 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
           }
 
   function AnswerForm({celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
+    const { user, setUser } = useContext(UserContext);
     const [answer, setAnswer] = useState('')
     const [celebName, setCelebName] = useState('')
     const [celebCountry, setCelebCountry]= useState('')
     const [answerBorder, setAnswerBorder] = useState(true)
-    
+    const [player1, setPlayer1] = useState('')
+    const [player2, setPlayer2] = useState('')
+    const [player1Score, setPlayer1Score] = useState(0)
+    const [player2Score, setPlayer2Score] = useState(0)
+    const [isPlayer1, setIsPlayer1] = useState(false)
+    const [isPlayer2, setIsPlayer2] = useState(false)
+    if (!player1 && user) {
+      setPlayer1(user)
+      setIsPlayer1(true) }
+    if (!user && !player2) {
+      setPlayer2('Guest')
+      setIsPlayer2(true)
+
+    }
 
     const [timer, setTimer] = useState(60)
     const [loaded, setLoaded] = useState(false)
@@ -143,7 +159,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
     //Handling SUbmit
   const handleSubmit = (e) =>{
 
-    console.log('HEEEELLLLLLOOOOOO')
+    console.log('HEEEELLLLLLOOOOOO', user, user.length)
     const userInput =  e.target[0].value
     e.preventDefault()
     
@@ -172,14 +188,13 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
     if(gameAnswer === userAnswer){
       handleNextCeleb()
       setAnswer('')
-      //setAnswerBorder(true)
+      isPlayer1 ? setPlayer1Score(player1Score+1) : setPlayer2Score(player2Score+1)
       console.log("CORRECT!")
 
     }else{
       console.log(gameAnswer, userAnswer)
       console.log("this aint it dummy")
       console.log(difference, "You've got this much wrong")
-      setAnswerBorder(false)
     }
   }
     
@@ -192,6 +207,7 @@ function GameTimer({celebNames, celebURLs, setblock1, setblock2, setblock3, setb
        <input onChange={(e)=> setAnswer(e.target.value)} value={answer} type={'text'} placeholder={'Your Answer'} 
         className={answerBorder ? 'submitForm' : 'submitFormWrong'}/>
         <button type='Submit'> Click to Submit</button>
+        <h3>{player1}: {player1Score}    {player2}:{player2Score} </h3>
 
       {/*   <p>you have {gameAnswerCharNum - answer.length} letters left</p>  */}
       </form>
