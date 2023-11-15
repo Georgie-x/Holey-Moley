@@ -77,12 +77,10 @@ io.on("connection", (socket) => {
         console.log("next celeb", newCelebURL);
         io.emit("update_celeb", newCelebURL);
       });
-
-      socket.on("next_answer", (newAnswer) => {
-        console.log("next answer", newAnswer);
-        io.emit("update_answer", newAnswer);
-        io.emit("correctAnswer", newAnswer);
-      });
+     
+      socket.on('next_answer', (newAnswer) => {
+        io.emit('update_answer', newAnswer);
+      })
 
       socket.on('update_score', ({ player1Score, player2Score }) => {
         io.emit('update_score', { player1Score, player2Score });

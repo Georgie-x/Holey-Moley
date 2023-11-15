@@ -1,10 +1,12 @@
 import styles from "./GameSetup.module.css"
+import Game from '../Page-components/Game'
 
 function GameSetup() {
   return (
     <>
       <h1>GameSetup</h1>
       <img src="src/assets/0_Chris-Pratt.webp" alt="" />
+      <Game />
     </>
   );
 }
