@@ -16,7 +16,7 @@ function Menu({ showsArray }) {
 
           <div className={styles.showcardcont}>
             {showsArray.map((show) => {
-              console.log(show.show_img_url)
+
               return (
 
                 <div className={styles.showcards}><Link to="/setup">

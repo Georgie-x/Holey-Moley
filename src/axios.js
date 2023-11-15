@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const showAPI = axios.create({
-    baseURL: 'https://holey-moley-be.onrender.com/api/'
+    baseURL: 'https://holey-moley.onrender.com'
 })
 
 export function getShowCharacters() {
@@ -10,7 +10,7 @@ export function getShowCharacters() {
 
 
 export function getAllShows() {
-    return showAPI.get('/shows');
+    return showAPI.get('/api/shows');
 }
 
 
@@ -18,15 +18,15 @@ export function getAllShows() {
 
 
 export function loginNewUser(username) {
-    return showAPI.post(`/users/${username}`, username)
+    return showAPI.post(`/api/users`, { username: username, logged_in: true })
 
 }
 export function loginUser(username) {
-    return showAPI.patch(`/users/${username}`, username)
+    return showAPI.patch(`/api/users/${username}`, username)
 }
 
 export function getChars(show_id, numOfChars) {
-    return axios.get(`/characters/${show_id}/${numOfChars}`)
+    return axios.get(`/api/characters/${show_id}/${numOfChars}`)
 }
 
 
