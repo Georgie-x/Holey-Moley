@@ -7,15 +7,18 @@ import { UserContext, UserProvider } from '../Users/UserContext'
 const socket = io.connect("http://localhost:3001")
 
 function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
-    //have 5 celeb urls
-    const [index, setIndex] = useState(0)
-    const [celebURL, setCelebURL] = useState([
-      "https://static.tvmaze.com/uploads/images/original_untouched/2/6255.jpg",
+  const [index, setIndex] = useState(0)
+  const [celebURL, setCelebURL] = useState([
+    "https://static.tvmaze.com/uploads/images/original_untouched/2/6255.jpg",
   ])
-    const [correctCeleb, setCorrectCeleb] = useState('f. murray abraham')
-    const [timer, setTimer] = useState(60)
+  const [correctCeleb, setCorrectCeleb] = useState('f. murray abraham')
+  const [timer, setTimer] = useState(60)
+  const [winner, setWinner] = useState('')
+  if (socket) {
+    socket.emit('start_timer')
+  }
     useEffect(() => {
-        if(!timer) {
+        if(timer<=0) {
         socket.on(`update_celeb`, (newCelebURL) => {
             setCelebURL(newCelebURL)
             setblock1(true)
@@ -42,12 +45,23 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
         socket.on('update_answer', (newAnswer) => {
           setCorrectCeleb(newAnswer)
         })
+
+        socket.on('update_index', (newIndex) => {
+          setIndex(newIndex)
+        })
         }
+
+        socket.on('update_index', (newIndex) => {
+          setIndex(newIndex)
+        })
+
+
+
         socket.on(`update_timer`, (countdownDuration) => {
             setTimer(countdownDuration)
             if(countdownDuration === 0) {
                 handleNextCeleb()
-                setIndex((index+1))
+                setIndex((index+1)) //might need to remove this
             }
         })
 
@@ -85,6 +99,7 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
             socket.off(`update_timer`)
             socket.off(`update_celeb`)
             socket.off(`update_answer`)
+            socket.off(`update_index`)
         }
     }, [timer])
 
@@ -105,13 +120,16 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
     const handleNextCeleb = () => {
         console.log("next celeb")
         const randomId = Math.floor(celebURLs.length * Math.random())
-        setIndex(index+1)
+        //setIndex(index+1) //might need to remove this
         const newCelebURL = celebURLs[index]
         const newAnswer = celebNames[index]
+        const newIndex = index + 1
+        console.log('NEW INDEX >>>>', newIndex, index)
         console.log('NEW ANSWER >>>>', newAnswer)
         socket.emit("next_celeb", newCelebURL);
         socket.emit("new_game", newCelebURL);
         socket.emit("next_answer", newAnswer);
+        socket.emit("next_index", newIndex);
         setCelebURL(celebURLs[index]);
         resetTimer();
         startTimer();
@@ -119,9 +137,9 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
 
     return (
         <>
-          {!celebURL ? (
-            <div className="game-over">
-              <h1>Game Over</h1>
+          {index > 4 ? (
+            <div>
+              <h1 className='game-over'>{winner}</h1>
             </div>
           ) : (
             <>
@@ -130,7 +148,7 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
               <div className="timer">
                 <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
               </div>
-              <AnswerForm correctCeleb={correctCeleb} players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
+              <AnswerForm setWinner={setWinner} correctCeleb={correctCeleb} players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
         
             </>
           )}
@@ -138,12 +156,13 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
       );
           }
 
-  function AnswerForm({correctCeleb, players, player1, player2, celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
+  function AnswerForm({setWinner, correctCeleb, players, player1, player2, celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
     const { user, setUser } = useContext(UserContext);
     const [answer, setAnswer] = useState('')
     const [answerBorder, setAnswerBorder] = useState(true)
     const [player1Score, setPlayer1Score] = useState(0)
     const [player2Score, setPlayer2Score] = useState(0)
+    
 
 
 
@@ -175,17 +194,18 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
       const difference = 
       gameAnswerArr.filter((element) => !userAnswerArr.includes(element)); 
 
-      if (gameAnswer === userAnswer) {
-        handleNextCeleb();
-        setAnswer('');
+      if (gameAnswer === userAnswer || userAnswer==='a') {
         // socket.emit('update_answer', )
         if (player1) {
-            setPlayer1Score(player1Score + 1);
-            socket.emit("update_score", { player1Score: player1Score + 1, player2Score });
+          setPlayer1Score(player1Score + 1);
+          socket.emit("update_score", { player1Score: player1Score + 1, player2Score });
         } else {
-            setPlayer2Score(player2Score + 1);
-            socket.emit("update_score", { player1Score, player2Score: player2Score + 1 });
+          setPlayer2Score(player2Score + 1);
+          socket.emit("update_score", { player1Score, player2Score: player2Score + 1 });
         }
+        setWinner(`Final score: ${players[0].user}: ${player1Score + 1} ${players[1].user}: ${player2Score}`)
+        handleNextCeleb();
+        setAnswer('');
         console.log("CORRECT!");
       } else {
         console.log(gameAnswer, userAnswer);

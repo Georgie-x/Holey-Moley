@@ -82,6 +82,10 @@ io.on("connection", (socket) => {
         io.emit('update_answer', newAnswer);
       })
 
+      socket.on('next_index', (newIndex) => {
+        io.emit('update_index', newIndex);
+      })
+
       socket.on('update_score', ({ player1Score, player2Score }) => {
         io.emit('update_score', { player1Score, player2Score });
       });
