@@ -203,7 +203,7 @@ body {
   .seventeen {
     background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
-    height: 145px;
+    height: 150px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -211,7 +211,7 @@ body {
   .eighteen {
     background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
-    height: 145px;
+    height: 150px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -219,7 +219,7 @@ body {
   .nineteen {
     background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 150px;
-    height: 145px;
+    height: 150px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -227,7 +227,7 @@ body {
   .twenty {
     background-image: linear-gradient(45deg, rgb(57, 157, 75), rgb(65, 192, 235) 80%);
     width: 140px;
-    height: 145px;
+    height: 150px;
     margin: 0;
     padding: 0;
     border: solid black 1px;
@@ -249,7 +249,7 @@ body {
     font-family: 'Pixelify Sans', sans-serif;
   }
   .game-window-and-button-container {
-    
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -318,6 +318,7 @@ body {
   .answer-form {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     margin-top: 1000px;
     z-index:30;
@@ -328,6 +329,42 @@ body {
   }
 
   .answer-form input {
-    max-width: 200px;
+   width: 200px;
+   height: 40px;
+   border-radius: 10px;
     
   }
+
+  .answer-form button {
+    background-color: #FFA260;
+    color: white;
+  }
+
+  .answer-form button:hover {
+    cursor: pointer;
+    box-shadow: 1px 2px 9px 0px #FFA260;
+    transform: translateY(-0.15em);
+  }
+
+  .scores {
+    border: 1px solid #FFA260; 
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    
+  }
+
+.inputs {
+  width: 550px;
+  
+  
+}
+
+.inputs input {
+  margin-right: 20px;
+}
+  
+

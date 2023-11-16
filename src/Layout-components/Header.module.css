@@ -23,11 +23,13 @@
 
 .rightnav {
   display: flex;
-  
+  margin-top: 10px;
 }
 
 .logo {
-  width: 230px;
+  margin-top: 5px;
+  width: 250px;
+  height: 50px;
 }
 
 

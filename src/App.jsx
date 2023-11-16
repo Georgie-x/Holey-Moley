@@ -10,16 +10,17 @@ import { UserContext, UserProvider } from './Users/UserContext'
 function App() {
   return (
     <>
-   <UserProvider >
-      <PageDisplay />
-      {/* <Launcher /> */}
-      {/* <NavBar />
+      <UserProvider >
+        <PageDisplay />
+        {/* <Game /> */}
+        {/* <Launcher /> */}
+        {/* <NavBar />
       <Sockets />
 
       <Auth />
       <PageDisplay /> */}
 
-    </UserProvider  >
+      </UserProvider  >
     </>
   )
 }
