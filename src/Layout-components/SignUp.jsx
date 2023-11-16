@@ -44,18 +44,12 @@ function SignUp({ setIsHeaderVisible }) {
                 <input
                     id="password"
                     type="password"
-                    placeholder="Create your password"
+                    placeholder="Create password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
-                <label htmlFor="username">Username</label>
-                <input
-                    id="username"
-                    type="text"
-                    placeholder="Create your username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                ></input>
+
+
                 <button type="submit">Sign Up</button>
             </form>
         </div>
