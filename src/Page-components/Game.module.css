@@ -27,7 +27,7 @@
 
 .innercontainer {
   border-radius: 20px;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1) 80%);
+  background-color: rgba(255, 255, 255, .6);
   width: 800px;
   height: 1250px;
   display: flex;
@@ -62,5 +62,9 @@
   cursor: pointer;
   box-shadow: 1px 2px 9px 0px #FFA260;
   transform: translateY(-0.15em);
+}
+
+.setupcontainer ul {
+list-style-type: none;
 }
 
