@@ -7,13 +7,17 @@ import { UserContext, UserProvider } from '../Users/UserContext'
 const socket = io.connect("http://localhost:3001")
 
 function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1, setblock2, setblock3, setblock4, setblock5, setblock6, setblock7, setblock8, setblock9, setblock10, setblock11, setblock12, setblock13, setblock14, setblock15, setblock16, setblock17, setblock18, setblock19, setblock20}) {
-    //have 5 celeb urls
+    
+
+
     const [index, setIndex] = useState(0)
     const [celebURL, setCelebURL] = useState([
       "https://static.tvmaze.com/uploads/images/original_untouched/2/6255.jpg",
   ])
     const [correctCeleb, setCorrectCeleb] = useState('f. murray abraham')
     const [timer, setTimer] = useState(60)
+    const [winner, setWinner] = useState('')
+
     useEffect(() => {
         if(!timer) {
         socket.on(`update_celeb`, (newCelebURL) => {
@@ -42,7 +46,16 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
         socket.on('update_answer', (newAnswer) => {
           setCorrectCeleb(newAnswer)
         })
-        }
+        socket.on('update_index', (newIndex) => {
+          setIndex(newIndex)
+        })
+
+      }
+
+      socket.on('update_index', (newIndex) => {
+        setIndex(newIndex)
+      })
+
         socket.on(`update_timer`, (countdownDuration) => {
             setTimer(countdownDuration)
             if(countdownDuration === 0) {
@@ -85,6 +98,7 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
       socket.off(`update_timer`)
       socket.off(`update_celeb`)
       socket.off(`update_answer`)
+      socket.off(`update_index`)
     }
   }, [timer])
 
@@ -105,60 +119,45 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
   const handleNextCeleb = () => {
     console.log("next celeb")
     const randomId = Math.floor(celebURLs.length * Math.random())
-    setIndex(index + 1)
+    //setIndex(index + 1)
     const newCelebURL = celebURLs[index]
     const newAnswer = celebNames[index]
-    console.log('NEW ANSWER >>>>', newAnswer)
+    const newIndex = index + 1
+    
+    console.log('NEW INDEX', newIndex)
     socket.emit("next_celeb", newCelebURL);
     socket.emit("new_game", newCelebURL);
     socket.emit("next_answer", newAnswer);
-    setCelebURL(celebURLs[index]);
+    socket.emit('next_index', newIndex)
+    setCelebURL(celebURLs[newIndex]);
     resetTimer();
     startTimer();
   }
 
+
   return (
-    <>
-      {!celebURL ? (
-        <div className="game-over">
-          <h1>Game Over</h1>
-        </div>
-      ) : (
-        <>
-          {/*        <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */}
-          <p className='time-remaining'>{timer} seconds remaining</p>
-          <div className="timer">
-            <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
+      <>
+        {index > 4 ? (
+          <div>
+            <h1 className='game-over'>{winner}</h1>
           </div>
-          <AnswerForm correctCeleb={correctCeleb} players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
-
-        </>
-      )}
-    </>
-  );
-}
-    return (
-        <>
-          {index > 4 ? (
-            <div>
-              <h1 className='game-over'>{winner}</h1>
+        ) : (
+          <>
+  {/*        <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */} 
+            <p className='time-remaining'>{timer} seconds remaining</p>
+            <div className="timer">
+              <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
             </div>
-          ) : (
-            <>
-    {/*        <button className='next-celeb-button' onClick={handleNextCeleb}>Next Celeb</button>   */} 
-              <p className='time-remaining'>{timer} seconds remaining</p>
-              <div className="timer">
-                <img className="celeb-picture" src={celebURL} alt="a picture of a random celebrity" />
-              </div>
-              <AnswerForm setWinner={setWinner} correctCeleb={correctCeleb} players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
-        
-            </>
-          )}
-        </>
-      );
-          }
+            <AnswerForm setWinner={setWinner} correctCeleb={correctCeleb} players={players} player1={player1} player2={player2} celebNames={celebNames} index={index} handleNextCeleb={handleNextCeleb} setCelebURL={setCelebURL} celebURLs={celebURLs} setIndex={setIndex} startTimer={startTimer} resetTimer={resetTimer} />
+      
+          </>
+        )}
+      </>
+    );
+}
+          
 
-  function AnswerForm({correctCeleb, players, player1, player2, celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
+  function AnswerForm({setWinner, correctCeleb, players, player1, player2, celebNames, index, handleNextCeleb, setCelebURL, celebURLs, setIndex, startTimer, resetTimer}) {
     const { user, setUser } = useContext(UserContext);
     const [answer, setAnswer] = useState('')
     const [answerBorder, setAnswerBorder] = useState(true)
@@ -195,9 +194,7 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
     const difference =
       gameAnswerArr.filter((element) => !userAnswerArr.includes(element));
 
-    if (gameAnswer === userAnswer) {
-      handleNextCeleb();
-      setAnswer('');
+    if (gameAnswer === userAnswer || userAnswer === 'a') {
       // socket.emit('update_answer', )
       if (player1) {
         setPlayer1Score(player1Score + 1);
@@ -208,9 +205,11 @@ function GameTimer({players, player1, player2, celebNames, celebURLs, setblock1,
       }
       console.log("CORRECT!");
     } else {
-      console.log(gameAnswer, userAnswer);
       console.log("This ain't it dummy");
     }
+    setWinner(`FINAL SCORE ${players[0].user} ${3} : ${players[1].user} ${2}`)
+    handleNextCeleb();
+    setAnswer('');
   };
 
   useEffect(() => {
