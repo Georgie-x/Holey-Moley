@@ -1,7 +1,7 @@
-import styles from "./GameLoading.module.css"
 
 
-function GameLoading(){
+
+function GameLoading() {
     return <h1>Game Loading</h1>
 }
 

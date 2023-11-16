@@ -18,11 +18,15 @@
     /* justify-content: space-between; */
     width: 600px;
     text-align: center;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1) 80%);
+    border-radius: 20px;
 }
 
 .button {
     align-self:baseline;
     width: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .button:hover {

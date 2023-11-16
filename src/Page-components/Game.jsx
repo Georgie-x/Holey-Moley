@@ -3,10 +3,11 @@ import { Launcher } from "../Game-components/index.jsx"
 import { useEffect, useContext } from "react"
 import io from 'socket.io-client'
 import { UserContext, UserProvider } from "../Users/UserContext";
+import styles from "./Game.module.css"
 
 const socket = io.connect("http://localhost:3001")
 
-function Game(){
+function Game() {
     const { user, setUser } = useContext(UserContext);
     const [room, setRoom] = useState('')
     const [gameStarted, setGameStarted] = useState(false)
@@ -17,12 +18,12 @@ function Game(){
     const [player2, setPlayer2] = useState(false)
 
     const createRoom = () => {
-        socket.emit('createRoom', {room, user})
+        socket.emit('createRoom', { room, user })
         setPlayer1(true)
     }
 
     const joinRoom = () => {
-        socket.emit('joinRoom', {room, user})
+        socket.emit('joinRoom', { room, user })
         setJoinedRoom(true)
         setPlayer2(true)
     }
@@ -43,7 +44,7 @@ function Game(){
         socket.on('startGame', () => {
             console.log('Game is starting!');
             setGameStarted(true)
-        
+
         })
         socket.on('stopGame', () => {
             console.log('Game is stopping!');
