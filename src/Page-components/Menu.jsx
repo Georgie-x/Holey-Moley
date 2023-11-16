@@ -3,15 +3,19 @@ import { Link } from "react-router-dom"
 
 function Menu({ showsArray }) {
 
+  showsArray[0].show_img_url = "src/assets/homeland.png"
+
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.menu}>
+          <h1>Game Setup</h1>
           <div className={styles.buttons}>
             <button className={styles.button} onClick={(e) => e.target.classList.toggle(styles.buttonclicked)}>One Player</button>
             <button className={styles.button} onClick={(e) => e.target.classList.toggle(styles.buttonclicked)}>Two Player</button>
           </div>
-          <h1>Pick a show!</h1>
+          <h1>Pick A Show!</h1>
 
 
           <div className={styles.showcardcont}>
